@@ -48,6 +48,7 @@ h4{
     visibility: hidden;
 }
 
+/* ------------TELA 2 -----------*/
 .superior{
     background-color: red;
     height: 69px;
@@ -144,5 +145,58 @@ h4{
 
 /* ----- Media Query ------------------------------ */
 @media (max-width: 375px) {
+    .titulo{
+        height: 142px;
+    }
+    .quizz{
+        height: 436px;
+        padding: 18px;
+        margin-bottom: 28px;
+    }
+    .img-resposta{
+        height: 113px;
+        width: 163px;
+    }
+    .pergunta{
+        height: 89px;
+        width: 340px;
+    }
 
+    .conteudo-quizz{
+        width: 100%;
+    }
+
+    h3{
+        font-size: 13px;
+    }
+
+    .conteudo-quizz{
+        margin: 24px auto;
+    }
+
+    h2{
+        font-size: 19px;
+    }
+
+    .img-final-quizz{
+        width: 340px;
+        height: 255px;
+    }
+
+    .caixa{
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    h4{
+        font-size: 17px;
+    }
+
+    .bot1 .bot2{
+        height: 44px;
+    }
+
+    .botoes{
+        width: 220px;
+    }
 }
