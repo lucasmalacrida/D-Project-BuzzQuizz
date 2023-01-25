@@ -1,10 +1,148 @@
+*{
+    box-sizing: border-box;
+}
 /* ----- Texts ------------------------------ */
+body{
+    font-family: 'Roboto';
+}
 
+h1{
+    font-size: 39px;
+    font-weight: 400;
+    color: white; 
+}
 
+h2{
+    font-size: 23px;
+    font-weight: 700;
+    color: white; 
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 700;
+    color: black; 
+}
+
+h4{
+    font-size: 19px;
+    font-weight: 700;
+    color: #484848; 
+}
+
+.txt-bot1{
+    font-size: 21px;
+    font-weight: 400;
+    color: #FFF5f4; 
+    line-height: 52px;
+}
+
+.txt-bot2{
+    font-size: 21px;
+    font-weight: 400;
+    color: #818181; 
+}
 /* ----- Tags and Divs ------------------------------ */
 
+.escondido{
+    visibility: hidden;
+}
+
+.superior{
+    background-color: red;
+    height: 69px;
+}
+
+.titulo{
+    background-image: url(./media/auxiliar.jpg);
+    height: 227px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo-quizz{
+    margin: 42px auto;
+    width: 759px;
+}
+
+.quizz{ 
+    height:676px ; 
+    padding: 28px 36px 36px 36px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 42px;
+}
+
+.pergunta{
+    background-color: #434ca0;
+    height: 138px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.respostas{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+.img-resposta{
+    height: 175px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    width: 330px;
+}
+
+.final-quizz{
+    height: 430px;
+    padding: 18px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.caixa{
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-final-quizz{
+    width: 364px;
+    height: 273px;
+}
+
+.txt{
+    width: 328px;
+}
+
+.dados{
+    height: 99px;
+    background-color: red;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botoes{
+    margin: 57px auto;
+    width: 260px;
+}
+
+.bot1{
+    background-color: red;
+    border-radius: 15px;
+    height: 52px;
+    text-align: center;
+}
+
+.bot2{
+    height: 44px;
+    text-align: center;
+    margin-top: 16px;
+}
 
 /* ----- Media Query ------------------------------ */
-@media (max-width: 1100px) {
+@media (max-width: 375px) {
 
 }
