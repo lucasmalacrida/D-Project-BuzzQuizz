@@ -48,10 +48,18 @@ h4{
     visibility: hidden;
 }
 
-/* ------------TELA 2 -----------*/
 .superior{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:37px;
+    color:#FFFF;
+    font-weight: 700;
     background-color: red;
     height: 69px;
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
 }
 
 .titulo{
@@ -143,60 +151,105 @@ h4{
     margin-top: 16px;
 }
 
+/* CSS TELA 1 */
+.seusQuizzes{
+    display: flex;
+    align-items: center;
+    margin-top:69px;
+    width: 340px;
+}
+.conteiner-tela1{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 194px;
+}
+.plus{
+    width:31px;
+    height: 30px;
+    margin-left: 17px;
+    color: #EC362D;
+}
+.criarQuizzBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1051px;
+    height: 181px;
+    background: #FAFAFA;
+    border: 1px dashed #D5D5D5;
+    border-radius: 5px;
+}
+.cardQuizz{
+    display: flex;
+    width:250px;
+    height: 107px;
+    font-weight: 400;
+    font-size:20px;
+    color:#B9B9B9;
+    align-items: center;
+    text-align: center;
+    
+}
+.criarQuizzButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 151px;
+    height: 40px;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    margin-bottom:33px;
+}
+
+.todosQuizzes{
+    margin-top: 77px;
+    margin-bottom: 12px;
+}
+.quizzesBox{
+    display: grid;
+    grid-template-columns: 340px 340px 340px;
+    grid-auto-rows: 200px;
+    row-gap: 12px;
+    width: 1051px;
+    height: 374px;
+}
+#model-quiz {
+    display: inline-block;
+    width: 340px;
+    height: 181px;
+    position: relative;
+  }
+  
+#model-quiz figcaption {
+    position: absolute;
+    top: 145px;
+    left: 18px;
+    font-weight: 400;
+    font-size: 19px;
+    color:white;
+    border-radius: 5px;
+  }
+  #model-quiz img{
+    border-radius: 5px;
+  }
+/* FIM CSS TELA 1 */
+
 /* ----- Media Query ------------------------------ */
 @media (max-width: 375px) {
-    .titulo{
-        height: 142px;
+
+/* CSS TELA 1 */
+    .conteiner-tela1{
+        padding-left: 12px;
     }
-    .quizz{
-        height: 436px;
-        padding: 18px;
-        margin-bottom: 28px;
+    .seusQuizzes{
+        justify-content: space-between;
+        padding:0;
+        margin-top:0px;
     }
-    .img-resposta{
-        height: 113px;
-        width: 163px;
-    }
-    .pergunta{
-        height: 89px;
+    .criarQuizzBox{
         width: 340px;
     }
-
-    .conteudo-quizz{
-        width: 100%;
-    }
-
-    h3{
-        font-size: 13px;
-    }
-
-    .conteudo-quizz{
-        margin: 24px auto;
-    }
-
-    h2{
-        font-size: 19px;
-    }
-
-    .img-final-quizz{
-        width: 340px;
-        height: 255px;
-    }
-
-    .caixa{
-        flex-direction: column;
-        gap: 9px;
-    }
-
-    h4{
-        font-size: 17px;
-    }
-
-    .bot1 .bot2{
-        height: 44px;
-    }
-
-    .botoes{
-        width: 220px;
-    }
+/* FIM CSS TELA 1 */
 }
