@@ -1,4 +1,4 @@
-// TELA 2
+//---------------------------------TELA 2
 tela2();
 
 function tela2(){
@@ -8,12 +8,13 @@ promise.then(PegarUmQuizz);
 
 let tituloQuizz;
 
+
 function PegarUmQuizz(resposta){
     console.log(resposta);
     tituloQuizz=resposta.data.title;
     document.querySelector(".titulo h1").innerHTML=tituloQuizz;
     document.querySelector(".titulo").style.backgroundImage = `url(${resposta.data.image})`;
-    
+ 
     for(let i=0;i<resposta.data.questions.length;i++){
     document.querySelector(".conteudo-quizz").innerHTML+=`
     <div class="quizz ">
@@ -26,13 +27,22 @@ function PegarUmQuizz(resposta){
                 <div class="respostas">
                 </div>
             `;
+            document.querySelector('.conteudo-quizz').children[i].querySelector(".pergunta").style.backgroundColor = `${resposta.data.questions[i].color}`;
         for(let j=0;j<resposta.data.questions[i].answers.length;j++){
             document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").innerHTML+=`
-             <div class="resposta">
+             <div class="resposta" onclick=selecionarResposta(this)>
                 <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
                 <h3>${resposta.data.questions[i].answers[j].text}</h3>
              </div>
         `;
+
+        if(resposta.data.questions[i].answers[j].isCorrectAnswer==true){
+          document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").children[j].classList.add("respostaCorreta");
+        }else{
+          document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").children[j].classList.add("respostaErrada");
+        }
+
+
         }
         
      }
@@ -58,5 +68,22 @@ function PegarUmQuizz(resposta){
           </div>
         </div> ` ;        
           }
-          
+       
+        
 
+          
+function selecionarResposta(x){
+  if(x.classList.contains("respostaCorreta")){
+    alert("certo");
+  }else{
+    alert("f");
+  }
+ let nodeList=x.parentElement.querySelectorAll(".respostaErrada");
+
+ for(let i=0;i<nodeList.length;i++){
+  nodeList[i].style.opacity = "0.3";
+  nodeList[i].style.color="#ff4b4b";
+}
+x.parentElement.querySelector(".respostaCorreta h3").style.color="#009c22";
+}
+//-------------------------------------------------FIM TELA 2
