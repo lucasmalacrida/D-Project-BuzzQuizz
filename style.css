@@ -127,7 +127,7 @@ header{
 /* Tela 2 ---------------------------------------- */
 
 .titulo{
-    background-image: url(./media/auxiliar.jpg);
+    
     height: 227px;
     display: flex;
     align-items: center;
@@ -315,5 +315,42 @@ header{
     .criarQuizzBox{
         width: 340px;
     }
-/* FIM CSS TELA 1 */
+
+    .conteudo-quizz{
+        width: 100%;
+    }
+
+    h3{
+        font-size: 13px;
+    }
+
+    .conteudo-quizz{
+        margin: 24px auto;
+    }
+
+    h2 ,h1{
+        font-size: 19px;
+    }
+
+    .img-final-quizz{
+        width: 340px;
+        height: 255px;
+    }
+
+    .caixa{
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    h4{
+        font-size: 17px;
+    }
+
+    .bot1 ,.bot2{
+        height: 44px;
+    }
+
+    .botoes{
+        width: 220px;
+    }
 }
