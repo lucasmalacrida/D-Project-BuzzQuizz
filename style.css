@@ -1,9 +1,18 @@
 *{
     box-sizing: border-box;
 }
-/* ----- Texts ------------------------------ */
+/* ----- Texts ---------------------------------------------------------------------- */
 body{
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Sans-Serif';
+}
+
+header p{
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: white;
+    text-align: center;
+    padding-top: 13px;
 }
 
 h1{
@@ -21,6 +30,7 @@ h2{
 h3{
     font-size: 20px;
     font-weight: 700;
+    line-height: 23px;
     color: black; 
 }
 
@@ -42,17 +52,79 @@ h4{
     font-weight: 400;
     color: #818181; 
 }
-/* ----- Tags and Divs ------------------------------ */
+
+/* Tela 3 ---------------------------------------- */
+/* Tela 3-1 */
+
+/* Tela 3-2 */
+.pagina-criar-quizz p {
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    text-align: center;
+    padding-top: 63px;
+    padding-bottom: 12px;
+}
+
+.forms input {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    padding-left: 23px;
+}
+
+.forms input::placeholder {
+    font-style: italic;
+    color: #BABABA;
+}
+
+.final-button {
+    color: #FFF5F4;
+    text-align: center;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+}
+
+/* Tela 3-3 */
+
+
+/* Tela 3-4 */
+.page-3-4 .quizz-title {
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 27px;
+    color: white;
+}
+
+
+/* ----- Tags and Divs ---------------------------------------------------------------------- */
+
+body{
+    padding-top: 69px;
+    background-color: #FAFAFA;
+}
 
 .escondido{
-    visibility: hidden;
+    display: none !important;
 }
 
-/* ------------TELA 2 -----------*/
-.superior{
-    background-color: red;
-    height: 69px;
+.container-header{
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    width: 100%;
 }
+
+header{
+    background-color: #EC362D;
+    height: 69px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* Tela 1 ---------------------------------------- */
+
+/* Tela 2 ---------------------------------------- */
 
 .titulo{
     height: 227px;
@@ -140,6 +212,109 @@ h4{
     height: 44px;
     text-align: center;
     margin-top: 16px;
+}
+
+/* Tela 3 ---------------------------------------- */
+
+/* Tela 3-1 */
+.page-3-1 .forms {
+    padding: 12px 20px 15px 16px;
+}
+
+.page-3-1 .forms input {
+    margin-bottom: 9px;
+}
+
+/* Tela 3-2 */
+.forms {
+    margin: 24px auto;
+    background-color: white;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.05));
+    width: 600px;
+    padding: 14px 20px 14px 16px;
+}
+
+.forms h3 {
+    padding: 14px 0px;
+}
+
+.forms input {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-bottom: 14px;
+}
+
+.forms input:focus::placeholder {
+    visibility: hidden;
+}
+
+.separator {
+    height: 18px;
+}
+
+.closed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.closed ion-icon {
+    font-size: 23px;
+}
+
+.final-button {
+    width: 354px;
+    height: 54px;
+    display: block;
+    margin: 56px auto;
+    background-color: #EC362D;
+    border-radius: 15px;
+}
+
+/* Tela 3-3 */
+
+/* Tela 3-4 */
+.quizz-thumb {
+    position: relative;
+    width: 500px;
+    height: 266px;
+    margin: 0px auto;
+}
+
+.page-3-4 .quizz-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.quizz-gradient {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.63%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.page-3-4 .quizz-title {
+    position: absolute;
+    z-index: 2;
+    left: 23px;
+    bottom: 9px;
+}
+
+.page-3-4 .primary {
+    margin-bottom: 9px;
+}
+
+.secondary {
+    margin-top: 0px;
+    margin-bottom: 56px;
+    background-color: #FAFAFA;
+    color: #818181;
 }
 
 /* ----- Media Query ------------------------------ */
