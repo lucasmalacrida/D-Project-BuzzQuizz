@@ -125,7 +125,7 @@ header{
 }
 
 /* Tela 1 ---------------------------------------- */
-.conteinerPage1{
+.containerPage1{
     display: grid;
     justify-content: center;
     align-items: center;
@@ -135,7 +135,7 @@ header{
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 138px;
+    margin-top: 69px;
 }
 .plus{
     color:#EC362D;
@@ -150,15 +150,17 @@ header{
     align-items: center;
     width: 1051px;
     height: 181px;
-    background: #FAFAFA;
-    border: 1px dashed #D5D5D5;
+    border: 1px dashed #D4D4D4;
+    /* stroke-dasharray: 5 2; */
     border-radius: 5px;
+    margin: 77px 0px;
 }
 .textBox{
     width: 250px;
     color:#B9B9B9;
     font-size:20px;
     font-weight: 400;
+    line-height: 23px;
     text-align: center;
 }
 .criarQuizzButton{
@@ -173,19 +175,17 @@ header{
     align-items: center;
     justify-content: center;
     color: #EC362D;
-    border: 1px dashed #EC362D;
+    border: 1px dashed  #EC362D;
+    /* stroke-dasharray: 5 2; */
     border-radius: 50px;
 }
-.todosQuizzes{
-    margin-top:77px;
-    margin-bottom: 12px;
-}
+
 #model-quiz {
     display: inline-block;
     width: 340px;
     height: 181px;
     position: relative;
-  }
+}
   
 #model-quiz figcaption {
     position: absolute;
@@ -195,19 +195,23 @@ header{
     font-size: 19px;
     color:#FFFFFF;
     border-radius: 5px;
-  }
+}
 #model-quiz img{
     border-radius: 5px;
     width: 340px;
     height: 181px;
-  }
-  .todosQuizzesGrid{
+}
+.todosQuizzesGrid{
+    margin: 12px 0px;
     display: grid;
     width: 1053px;
     grid-template-columns: repeat(3,1fr);
     grid-column-gap: 15px;
     grid-row-gap: 1em;
-  }
+}
+.gap-final{
+    height: 200px;
+}
 
 /* Tela 2 ---------------------------------------- */
 
@@ -421,7 +425,7 @@ header{
         grid-column-gap: 15px;
         grid-row-gap: 1em;
     }
-    .conteinerPage1{
+    .containerPage1{
         display: block;
         margin-left: 12px;
     }
