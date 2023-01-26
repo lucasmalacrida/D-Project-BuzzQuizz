@@ -145,9 +145,102 @@
       </div>
      
     </div>
-
     <!-- FIM TELA 2 -->
 
+    <!-- TELA 3.1 -->
+    <div class="pagina-criar-quizz page-3-1 escondido">
+      <p>Comece pelo começo</p>
+      <div class="forms">
+        <input type="text" name="input-quizz-title" class="input-quizz-title" placeholder="Título do seu quizz">
+        <input type="text" name="input-quizz-imgurl" class="input-quizz-imgurl" placeholder="URL da imagem do seu quizz">
+        <input type="text" name="input-quizz-n-questions" class="input-quizz-n-questions" placeholder="Quantidade de perguntas do quizz">
+        <input type="text" name="input-quizz-n-levels" class="input-quizz-n-levels" placeholder="Quantidade de níveis do quizz">
+      </div>
+      <button onclick="toQuestions()" class="final-button primary">Prosseguir pra criar perguntas</button>
+    </div>
+
+    <!-- TELA 3.2 -->
+    <div class="pagina-criar-quizz page-3-2 escondido">
+      <p>Crie suas perguntas</p>
+      <div class="questions">
+        <div class="forms question open">
+          <h3>Pergunta 1</h3>
+          <div class="inputs inputs-1">
+            <input type="text" name="input-1-question-text" class="input-1-question-text" placeholder="Texto da pergunta">
+            <input type="text" name="input-1-question-bg" class="input-1-question-bg" placeholder="Cor de fundo da pergunta">
+  
+            <h3>Resposta correta</h3>
+            <input type="text" name="input-1-correct-answer" class="input-1-correct-answer" placeholder="Resposta correta">
+            <input type="text" name="input-1-correct-imgurl" class="input-1-correct-imgurl" placeholder="URL da imagem">
+  
+            <h3>Respostas incorretas</h3>
+            <input type="text" name="input-1-incorrect-answer-1" class="input-1-incorrect-answer-1" placeholder="Resposta incorreta 1">
+            <input type="text" name="input-1-incorrect-imgurl-1" class="input-1-incorrect-imgurl-1" placeholder="URL da imagem 1">
+            <div class="separator"></div>
+            <input type="text" name="input-1-incorrect-answer-2" class="input-1-incorrect-answer-2" placeholder="Resposta incorreta 2">
+            <input type="text" name="input-1-incorrect-imgurl-2" class="input-1-incorrect-imgurl-2" placeholder="URL da imagem 2">
+            <div class="separator"></div>
+            <input type="text" name="input-1-incorrect-answer-3" class="input-1-incorrect-answer-3" placeholder="Resposta incorreta 3">
+            <input type="text" name="input-1-incorrect-imgurl-3" class="input-1-incorrect-imgurl-3" placeholder="URL da imagem 3">
+          </div>
+          <button onclick="editQuestion()" class="escondido"><ion-icon name="create-outline"></ion-icon></button>
+        </div>
+  
+        <div class="forms question closed">
+          <h3>Pergunta 2</h3>
+          <button onclick="editQuestion()"><ion-icon name="create-outline"></ion-icon></button>
+        </div>
+  
+        <div class="forms question closed">
+          <h3>Pergunta 3</h3>
+          <button onclick="editQuestion()"><ion-icon name="create-outline"></ion-icon></button>
+        </div>
+      </div>
+      <button onclick="toLevels()" class="final-button primary">Prosseguir pra criar níveis</button>
+    </div>
+    
+    <!-- TELA 3.3 -->
+    <div class="pagina-criar-quizz page-3-3 escondido">
+      <p>Agora, decida os níveis</p>
+      <div class="levels">
+        <div class="forms level open">
+          <h3>Nível 1</h3>
+          <div class="inputs inputs-1">
+            <input type="text" name="input-1-level-title" class="input-1-level-title" placeholder="Título do nível">
+            <input type="text" name="input-1-level-percent" class="input-1-level-percent" placeholder="% de acerto mínima">
+            <input type="text" name="input-1-level-imgurl" class="input-1-level-imgurl" placeholder="URL da imagem do nível">
+            <input type="text" name="input-1-level-text" class="input-1-level-text" placeholder="Descrição do nível">
+          </div>
+          <button onclick="editlevel()" class="escondido"><ion-icon name="create-outline"></ion-icon></button>
+        </div>
+  
+        <div class="forms level closed">
+          <h3>Nível 2</h3>
+          <button onclick="editlevel()"><ion-icon name="create-outline"></ion-icon></button>
+        </div>
+  
+        <div class="forms level closed">
+          <h3>Nível 3</h3>
+          <button onclick="editlevel()"><ion-icon name="create-outline"></ion-icon></button>
+        </div>
+      </div>
+      <button onclick="toFinal()" class="final-button primary">Finalizar Quizz</button>
+    </div>
+
+    <!-- TELA 3.4 -->
+    <div class="pagina-criar-quizz page-3-4">
+      <p>Seu quizz está pronto!</p>
+      <div class="quizz-thumb">
+        <img class="quizz-img" alt="Img Quizz Criado" src="./media/pics/potterhead.png">
+        <div class="quizz-gradient"></div>
+        <p class="quizz-title">O quão Potterhead é você?</p>
+      </div>
+      
+      <button onclick="toQuizz()" class="final-button primary">Acessar Quizz</button>
+      <button onclick="toHome()" class="final-button secondary">Voltar pra home</button>
+    </div>
+
+    <!-- FIM TELA 3 -->
 
     <!-- ---------- -->
 

@@ -1,9 +1,18 @@
 *{
     box-sizing: border-box;
 }
-/* ----- Texts ------------------------------ */
+/* ----- Texts ---------------------------------------------------------------------- */
 body{
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Sans-Serif';
+}
+
+header p{
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: white;
+    text-align: center;
+    padding-top: 13px;
 }
 
 h1{
@@ -21,6 +30,7 @@ h2{
 h3{
     font-size: 20px;
     font-weight: 700;
+    line-height: 23px;
     color: black; 
 }
 
@@ -42,25 +52,79 @@ h4{
     font-weight: 400;
     color: #818181; 
 }
-/* ----- Tags and Divs ------------------------------ */
+
+/* Tela 3 ---------------------------------------- */
+/* Tela 3-1 */
+
+/* Tela 3-2 */
+.pagina-criar-quizz p {
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    text-align: center;
+    padding-top: 63px;
+    padding-bottom: 12px;
+}
+
+.forms input {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    padding-left: 23px;
+}
+
+.forms input::placeholder {
+    font-style: italic;
+    color: #BABABA;
+}
+
+.final-button {
+    color: #FFF5F4;
+    text-align: center;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+}
+
+/* Tela 3-3 */
+
+
+/* Tela 3-4 */
+.page-3-4 .quizz-title {
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 27px;
+    color: white;
+}
+
+
+/* ----- Tags and Divs ---------------------------------------------------------------------- */
+
+body{
+    padding-top: 69px;
+    background-color: #FAFAFA;
+}
 
 .escondido{
-    visibility: hidden;
+    display: none !important;
 }
 
-.superior{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size:37px;
-    color:#FFFF;
-    font-weight: 700;
-    background-color: red;
-    height: 69px;
+.container-header{
+    position: fixed;
+    z-index: 1;
+    top: 0px;
     width: 100%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
 }
+
+header{
+    background-color: #EC362D;
+    height: 69px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* Tela 1 ---------------------------------------- */
+
+/* Tela 2 ---------------------------------------- */
 
 .titulo{
     background-image: url(./media/auxiliar.jpg);
