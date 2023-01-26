@@ -55,7 +55,6 @@ h4{
 }
 
 .titulo{
-    background-image: url(./media/auxiliar.jpg);
     height: 227px;
     display: flex;
     align-items: center;
@@ -174,7 +173,7 @@ h4{
         margin: 24px auto;
     }
 
-    h2{
+    h2 ,h1{
         font-size: 19px;
     }
 
@@ -192,7 +191,7 @@ h4{
         font-size: 17px;
     }
 
-    .bot1 .bot2{
+    .bot1 ,.bot2{
         height: 44px;
     }
 
