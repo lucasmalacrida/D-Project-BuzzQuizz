@@ -7,15 +7,19 @@ promise.then(PegarUmQuizz);
 }
 
 let tituloQuizz;
-
-
+let arrayRespostasSorteado=[];
+let arrayRespostas=[];
+let arrayAux=[];
 function PegarUmQuizz(resposta){
     console.log(resposta);
     tituloQuizz=resposta.data.title;
     document.querySelector(".titulo h1").innerHTML=tituloQuizz;
     document.querySelector(".titulo").style.backgroundImage = `url(${resposta.data.image})`;
- 
+
     for(let i=0;i<resposta.data.questions.length;i++){
+    
+    arrayRespostas=[];
+                    
     document.querySelector(".conteudo-quizz").innerHTML+=`
     <div class="quizz ">
     </div>` ;
@@ -27,26 +31,34 @@ function PegarUmQuizz(resposta){
                 <div class="respostas">
                 </div>
             `;
-            document.querySelector('.conteudo-quizz').children[i].querySelector(".pergunta").style.backgroundColor = `${resposta.data.questions[i].color}`;
-        for(let j=0;j<resposta.data.questions[i].answers.length;j++){
-            document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").innerHTML+=`
-             <div class="resposta" onclick=selecionarResposta(this)>
-                <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
-                <h3>${resposta.data.questions[i].answers[j].text}</h3>
-             </div>
-        `;
-
-        if(resposta.data.questions[i].answers[j].isCorrectAnswer==true){
-          document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").children[j].classList.add("respostaCorreta");
-        }else{
-          document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").children[j].classList.add("respostaErrada");
-        }
-
-
-        }
+    document.querySelector('.conteudo-quizz').children[i].querySelector(".pergunta").style.backgroundColor = `${resposta.data.questions[i].color}`;
         
-     }
-      
+            for(let j=0;j<resposta.data.questions[i].answers.length;j++){
+             
+              let cadaResposta= `
+              <div class="resposta" onclick=selecionarResposta(this)>
+                  <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
+                  <h3>${resposta.data.questions[i].answers[j].text}</h3>
+              </div>
+              `;
+              
+              arrayRespostas.push(cadaResposta);
+            }
+            arrayRespostasSorteado=arrayRespostas.sort(comparador);
+              
+            for(let k=0;k<resposta.data.questions[i].answers.length;k++){
+              document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").innerHTML+=arrayRespostasSorteado[k];
+                           
+              if(resposta.data.questions[i].answers[k].isCorrectAnswer==true){
+                document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").children[k].classList.add("respostaCorreta");
+              }else{
+                document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").children[k].classList.add("respostaErrada");
+              }
+              
+            }
+            
+      }
+
      document.querySelector(".conteudo-quizz").innerHTML+=`
      <div class="final-quizz">
           <div class="dados">
@@ -70,7 +82,9 @@ function PegarUmQuizz(resposta){
           }
        
         
-
+function comparador(){
+            return Math.random() -0.5;
+}
           
 function selecionarResposta(x){
   if(x.classList.contains("respostaCorreta")){
