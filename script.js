@@ -159,4 +159,108 @@ function condicaoFinalQuizz(response){
 
 // ---------- FIM TELA 2 --------------------------------------------------------------------------------
 
-// ---------- TELA 3 --------------------------------------------------------------------------------
+// ---------- TELA 3 - Interatividade Básica --------------------------------------------------------------------------------
+function toQuestions(){
+  document.querySelector(".page-3-1").classList.add("escondido");
+  document.querySelector(".page-3-2").classList.remove("escondido");
+}
+
+function editQuestion(button){
+  let questSelected = document.querySelector(".questions .open");
+  let iconSelected = questSelected.lastElementChild;
+  let inputsSelected = iconSelected.previousElementSibling;
+
+  questSelected.classList.remove("open");
+  questSelected.classList.add("closed");
+  iconSelected.classList.remove("escondido");
+  inputsSelected.classList.add("escondido");
+
+  let quest = button.parentNode;
+  quest.classList.remove("closed");
+  quest.classList.add("open");
+  button.classList.add("escondido");
+  button.previousElementSibling.classList.remove("escondido");
+}
+
+function toLevels(){
+  document.querySelector(".page-3-2").classList.add("escondido");
+  document.querySelector(".page-3-3").classList.remove("escondido");
+}
+
+function editLevel(button){
+  let levelSelected = document.querySelector(".levels .open");
+  let iconSelected = levelSelected.lastElementChild;
+  let inputsSelected = iconSelected.previousElementSibling;
+
+  levelSelected.classList.remove("open");
+  levelSelected.classList.add("closed");
+  iconSelected.classList.remove("escondido");
+  inputsSelected.classList.add("escondido");
+
+  let level = button.parentNode;
+  level.classList.remove("closed");
+  level.classList.add("open");
+  button.classList.add("escondido");
+  button.previousElementSibling.classList.remove("escondido");
+}
+
+function toFinal(){
+  document.querySelector(".page-3-3").classList.add("escondido");
+  document.querySelector(".page-3-4").classList.remove("escondido");
+}
+
+function toQuizz(){
+  document.querySelector(".page-3-4").classList.add("escondido");
+  document.querySelector(".pagina-quizz").classList.remove("escondido");
+  // ...
+}
+
+function toHome(){
+  document.querySelector(".page-3-4").classList.add("escondido");
+  document.querySelector(".containerPage1").classList.remove("escondido");
+  // ...
+}
+
+// ---------- TELA 3.1 --------------------------------------------------------------------------------
+
+const inputQuizzTitle = document.querySelector('.input-quizz-title');
+const inputQuizzImgUrl = document.querySelector('.input-quizz-imgurl');
+const inputQuizzNQuestions = document.querySelector('.input-quizz-n-questions');
+const inputQuizzNLevels = document.querySelector('.input-quizz-n-levels');
+let numQuestions = inputQuizzNQuestions.value;
+let numLevels = inputQuizzNLevels.value;
+
+// const questionsTag = document.querySelector('.questions');
+// for (let i=0; i<numQuestions;i++){
+//   let questionTag = document.querySelector('.forms .question');
+
+// }
+
+// function sendMsg(){
+//     let quizzObject = {
+//         from: user.name,
+//         to: contact,
+//         text: msgInput.value,
+//         type: (visibility === "Reservadamente")? "private_message" : "message"
+//     }
+
+//     axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzObject).then(sendMsgSucess).catch(sendMsgError);
+
+//     function sendMsgSucess(Response){
+//         loadMsgs();
+//     }
+
+//     function sendMsgError(Response){
+//         alert("Erro de conexão.");
+//         window.location.reload()
+//     }
+// }
+
+// ---------- TELA 3.2 --------------------------------------------------------------------------------
+
+// ---------- TELA 3.3 --------------------------------------------------------------------------------
+
+// ---------- TELA 3.4 --------------------------------------------------------------------------------
+
+
+// ---------- FIM TELA 3 --------------------------------------------------------------------------------
