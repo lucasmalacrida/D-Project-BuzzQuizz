@@ -1,3 +1,31 @@
+// ---------- TELA 1 -------------------------------------------------------------------------------- 
+function randomNumber() {
+  return Math.floor(Math.random() * 49);
+}
+
+const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
+
+function quizzesRecebidos() {
+  const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
+  promise.then((res) => {
+    console.log(res)
+    for(let i = 0; i<6;i++){
+      let randomNum = randomNumber();
+    quizzRecebidos.innerHTML += `
+    <figure id="model-quiz">
+    <img src="${res.data[randomNum].image}"/>  
+    <figcaption>${res.data[randomNum].title}</figcaption>
+  </figure>
+    `
+}})
+promise.catch((erro) => {
+    alert("Erro no servidor! Atualize a página")
+})
+}
+quizzesRecebidos();
+
+// ---------- FIM TELA 1 --------------------------------------------------------------------------------
+
 // ---------- TELA 2 --------------------------------------------------------------------------------
 
 const promise=axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/1');
@@ -107,56 +135,51 @@ function selecionarResposta(x){
 let resultado;
 
 function criarAbaFinalQuizz(response){
-    if(clicks==qntPerguntas){
-        resultado=acertos/qntPerguntas*100;
-        
-        document.querySelector(".conteudo-quizz").innerHTML+=`
-        <div class="final-quizz">
-              <div class="dados">
-                <h2>X% de acerto: Nice!</h2>
-              </div>
-              <div class="caixa">
-                <img src="./media/auxiliar.jpg" alt="" class="img-final-quizz">
-                <div class="txt">
-                  <h4>Mensagem final</h4>
-                </div>
-              </div>
-              <div class="botoes">
-                <div class="bot1">
-                  <p class="txt-bot1">Reiniciar Quizz</p>
-                </div>
-                <div class="bot2">
-                  <p class="txt-bot2">Voltar pra home</p>
-                </div>
-              </div>
-            </div> ` ;  
-      document.querySelector(".final-quizz h2").innerHTML=`${Math.ceil(resultado)}% de acerto: `;
+  if(clicks==qntPerguntas){
+    resultado=acertos/qntPerguntas*100;
+    
+    document.querySelector(".conteudo-quizz").innerHTML+=
+    `<div class="final-quizz">
+          <div class="dados">
+            <h2>X% de acerto: Nice!</h2>
+          </div>
+          <div class="caixa">
+            <img src="./media/auxiliar.jpg" alt="" class="img-final-quizz">
+            <div class="txt">
+              <h4>Mensagem final</h4>
+            </div>
+          </div>
+          <div class="botoes">
+            <div class="bot1">
+              <p class="txt-bot1">Reiniciar Quizz</p>
+            </div>
+            <div class="bot2">
+              <p class="txt-bot2">Voltar pra home</p>
+            </div>
+          </div>
+        </div>`;
+    document.querySelector(".final-quizz h2").innerHTML=`${Math.ceil(resultado)}% de acerto: `;
 
-      setTimeout(function(){
-      document.querySelector(`.final-quizz`).scrollIntoView(true);
-      indexPergunta++;
-      },2000);
-
-  }
-      
+    setTimeout(function(){
+    document.querySelector(`.final-quizz`).scrollIntoView(true);
+    indexPergunta++;
+    },2000);
+  }   
 }
 
 function condicaoFinalQuizz(response){
-  
   if(clicks==qntPerguntas){  
-     for(let j=response.data.levels.length-1;j>0;j--){
-         if(resultado>=response.data.levels[j].minValue){
-           console.log(response.data.levels[j].image);
-           document.querySelector(".img-final-quizz").src=response.data.levels[j].image;
-           document.querySelector("h4").innerHTML=response.data.levels[j].text;
-           document.querySelector(".final-quizz h2").innerHTML+=response.data.levels[j].title;
-           break;
-         } 
-     } 
-    
+    for(let j=response.data.levels.length-1;j>0;j--){
+      if(resultado>=response.data.levels[j].minValue){
+        console.log(response.data.levels[j].image);
+        document.querySelector(".img-final-quizz").src=response.data.levels[j].image;
+        document.querySelector("h4").innerHTML=response.data.levels[j].text;
+        document.querySelector(".final-quizz h2").innerHTML+=response.data.levels[j].title;
+        break;
+      } 
+    }
   }
 }
-
 // ---------- FIM TELA 2 --------------------------------------------------------------------------------
 
 // ---------- TELA 3 - Interatividade Básica --------------------------------------------------------------------------------
