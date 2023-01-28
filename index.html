@@ -57,81 +57,16 @@
         <input type="text" name="input-quizz-n-questions" class="input-quizz-n-questions" placeholder="Quantidade de perguntas do quizz">
         <input type="text" name="input-quizz-n-levels" class="input-quizz-n-levels" placeholder="Quantidade de níveis do quizz">
       </div>
-      <button onclick="toQuestions()" class="final-button primary">Prosseguir pra criar perguntas</button>
+      <button onclick="loadQuizzInfo();loadQuestions();loadLevels();toQuestions()" class="final-button primary">Prosseguir pra criar perguntas</button>
     </div>
 
     <!-- TELA 3.2 -->
     <div class="pagina-criar-quizz page-3-2 escondido">
       <p>Crie suas perguntas</p>
       <div class="questions">
-        <div class="forms question open">
-          <h3>Pergunta 1</h3>
-          <div class="inputs inputs-1">
-            <input type="text" name="input-1-question-text" class="input-1-question-text" placeholder="Texto da pergunta">
-            <input type="text" name="input-1-question-bg" class="input-1-question-bg" placeholder="Cor de fundo da pergunta">
-  
-            <h3>Resposta correta</h3>
-            <input type="text" name="input-1-correct-answer" class="input-1-correct-answer" placeholder="Resposta correta">
-            <input type="text" name="input-1-correct-imgurl" class="input-1-correct-imgurl" placeholder="URL da imagem">
-  
-            <h3>Respostas incorretas</h3>
-            <input type="text" name="input-1-incorrect-answer-1" class="input-1-incorrect-answer-1" placeholder="Resposta incorreta 1">
-            <input type="text" name="input-1-incorrect-imgurl-1" class="input-1-incorrect-imgurl-1" placeholder="URL da imagem 1">
-            <div class="separator"></div>
-            <input type="text" name="input-1-incorrect-answer-2" class="input-1-incorrect-answer-2" placeholder="Resposta incorreta 2">
-            <input type="text" name="input-1-incorrect-imgurl-2" class="input-1-incorrect-imgurl-2" placeholder="URL da imagem 2">
-            <div class="separator"></div>
-            <input type="text" name="input-1-incorrect-answer-3" class="input-1-incorrect-answer-3" placeholder="Resposta incorreta 3">
-            <input type="text" name="input-1-incorrect-imgurl-3" class="input-1-incorrect-imgurl-3" placeholder="URL da imagem 3">
-          </div>
-          <button onclick="editQuestion(this)" class="escondido"><ion-icon name="create-outline"></ion-icon></button>
-        </div>
-  
-        <div class="forms question closed">
-          <h3>Pergunta 2</h3>
-          <div class="inputs inputs-2 escondido">
-            <input type="text" name="input-2-question-text" class="input-2-question-text" placeholder="Texto da pergunta">
-            <input type="text" name="input-2-question-bg" class="input-2-question-bg" placeholder="Cor de fundo da pergunta">
-  
-            <h3>Resposta correta</h3>
-            <input type="text" name="input-2-correct-answer" class="input-2-correct-answer" placeholder="Resposta correta">
-            <input type="text" name="input-2-correct-imgurl" class="input-2-correct-imgurl" placeholder="URL da imagem">
-  
-            <h3>Respostas incorretas</h3>
-            <input type="text" name="input-2-incorrect-answer-1" class="input-2-incorrect-answer-1" placeholder="Resposta incorreta 1">
-            <input type="text" name="input-2-incorrect-imgurl-1" class="input-2-incorrect-imgurl-1" placeholder="URL da imagem 1">
-            <div class="separator"></div>
-            <input type="text" name="input-2-incorrect-answer-2" class="input-2-incorrect-answer-2" placeholder="Resposta incorreta 2">
-            <input type="text" name="input-2-incorrect-imgurl-2" class="input-2-incorrect-imgurl-2" placeholder="URL da imagem 2">
-            <div class="separator"></div>
-            <input type="text" name="input-2-incorrect-answer-3" class="input-2-incorrect-answer-3" placeholder="Resposta incorreta 3">
-            <input type="text" name="input-2-incorrect-imgurl-3" class="input-2-incorrect-imgurl-3" placeholder="URL da imagem 3">
-          </div>
-          <button onclick="editQuestion(this)"><ion-icon name="create-outline"></ion-icon></button>
-        </div>
-  
-        <div class="forms question closed">
-          <h3>Pergunta 3</h3>
-          <div class="inputs inputs-3 escondido">
-            <input type="text" name="input-3-question-text" class="input-3-question-text" placeholder="Texto da pergunta">
-            <input type="text" name="input-3-question-bg" class="input-3-question-bg" placeholder="Cor de fundo da pergunta">
-  
-            <h3>Resposta correta</h3>
-            <input type="text" name="input-3-correct-answer" class="input-3-correct-answer" placeholder="Resposta correta">
-            <input type="text" name="input-3-correct-imgurl" class="input-3-correct-imgurl" placeholder="URL da imagem">
-  
-            <h3>Respostas incorretas</h3>
-            <input type="text" name="input-3-incorrect-answer-1" class="input-3-incorrect-answer-1" placeholder="Resposta incorreta 1">
-            <input type="text" name="input-3-incorrect-imgurl-1" class="input-3-incorrect-imgurl-1" placeholder="URL da imagem 1">
-            <div class="separator"></div>
-            <input type="text" name="input-3-incorrect-answer-2" class="input-3-incorrect-answer-2" placeholder="Resposta incorreta 2">
-            <input type="text" name="input-3-incorrect-imgurl-2" class="input-3-incorrect-imgurl-2" placeholder="URL da imagem 2">
-            <div class="separator"></div>
-            <input type="text" name="input-3-incorrect-answer-3" class="input-3-incorrect-answer-3" placeholder="Resposta incorreta 3">
-            <input type="text" name="input-3-incorrect-imgurl-3" class="input-3-incorrect-imgurl-3" placeholder="URL da imagem 3">
-          </div>
-          <button onclick="editQuestion(this)"><ion-icon name="create-outline"></ion-icon></button>
-        </div>
+
+        <!-- Aqui entram as Perguntas -->
+
       </div>
       <button onclick="toLevels()" class="final-button primary">Prosseguir pra criar níveis</button>
     </div>
@@ -140,38 +75,9 @@
     <div class="pagina-criar-quizz page-3-3 escondido">
       <p>Agora, decida os níveis</p>
       <div class="levels">
-        <div class="forms level open">
-          <h3>Nível 1</h3>
-          <div class="inputs inputs-1">
-            <input type="text" name="input-1-level-title" class="input-1-level-title" placeholder="Título do nível">
-            <input type="text" name="input-1-level-percent" class="input-1-level-percent" placeholder="% de acerto mínima">
-            <input type="text" name="input-1-level-imgurl" class="input-1-level-imgurl" placeholder="URL da imagem do nível">
-            <input type="text" name="input-1-level-text" class="input-1-level-text" placeholder="Descrição do nível">
-          </div>
-          <button onclick="editLevel(this)" class="escondido"><ion-icon name="create-outline"></ion-icon></button>
-        </div>
-  
-        <div class="forms level closed">
-          <h3>Nível 2</h3>
-          <div class="inputs inputs-2 escondido">
-            <input type="text" name="input-2-level-title" class="input-2-level-title" placeholder="Título do nível">
-            <input type="text" name="input-2-level-percent" class="input-2-level-percent" placeholder="% de acerto mínima">
-            <input type="text" name="input-2-level-imgurl" class="input-2-level-imgurl" placeholder="URL da imagem do nível">
-            <input type="text" name="input-2-level-text" class="input-2-level-text" placeholder="Descrição do nível">
-          </div>
-          <button onclick="editLevel(this)"><ion-icon name="create-outline"></ion-icon></button>
-        </div>
-  
-        <div class="forms level closed">
-          <h3>Nível 3</h3>
-          <div class="inputs inputs-3 escondido">
-            <input type="text" name="input-3-level-title" class="input-3-level-title" placeholder="Título do nível">
-            <input type="text" name="input-3-level-percent" class="input-3-level-percent" placeholder="% de acerto mínima">
-            <input type="text" name="input-3-level-imgurl" class="input-3-level-imgurl" placeholder="URL da imagem do nível">
-            <input type="text" name="input-3-level-text" class="input-3-level-text" placeholder="Descrição do nível">
-          </div>
-          <button onclick="editLevel(this)"><ion-icon name="create-outline"></ion-icon></button>
-        </div>
+
+        <!-- Aqui entram os Níveis -->
+
       </div>
       <button onclick="toFinal()" class="final-button primary">Finalizar Quizz</button>
     </div>
@@ -180,9 +86,9 @@
     <div class="pagina-criar-quizz page-3-4 escondido">
       <p>Seu quizz está pronto!</p>
       <div class="quizz-thumb">
-        <img class="quizz-img" alt="Img Quizz Criado" src="./media/pics/potterhead.png">
+        <p class="quizz-title"></p>
         <div class="quizz-gradient"></div>
-        <p class="quizz-title">O quão Potterhead é você?</p>
+        <img class="quizz-img" alt="Img Quizz Criado" src="">
       </div>
       
       <button onclick="toQuizz()" class="final-button primary">Acessar Quizz</button>

@@ -250,14 +250,84 @@ const inputQuizzTitle = document.querySelector('.input-quizz-title');
 const inputQuizzImgUrl = document.querySelector('.input-quizz-imgurl');
 const inputQuizzNQuestions = document.querySelector('.input-quizz-n-questions');
 const inputQuizzNLevels = document.querySelector('.input-quizz-n-levels');
-let numQuestions = inputQuizzNQuestions.value;
-let numLevels = inputQuizzNLevels.value;
+let quizzInfo = {title: "", image: "", questions: [], levels: []};
 
-// const questionsTag = document.querySelector('.questions');
-// for (let i=0; i<numQuestions;i++){
-//   let questionTag = document.querySelector('.forms .question');
+function loadQuizzInfo(){
+  quizzInfo.title = inputQuizzTitle.value;
+  quizzInfo.image = inputQuizzImgUrl.value;
 
-// }
+  let page3_4Tag = document.querySelector(".page-3-4 .quizz-thumb");
+  page3_4Tag.firstElementChild.innerHTML = quizzInfo.title;
+  page3_4Tag.lastElementChild.setAttribute("src",quizzInfo.image);
+}
+
+function loadQuestions(){
+  const questionsTag = document.querySelector('.questions');
+  let numQuestions = Number(inputQuizzNQuestions.value);
+  
+  for (let i=1; i<=numQuestions; i++){
+    questionsTag.innerHTML += 
+      `<div class="forms question closed">
+        <h3>Pergunta ${i}</h3>
+        <div class="inputs inputs-${i} escondido">
+          <input type="text" name="input-${i}-question-text" class="input-${i}-question-text" placeholder="Texto da pergunta">
+          <input type="text" name="input-${i}-question-bg" class="input-${i}-question-bg" placeholder="Cor de fundo da pergunta">
+  
+          <h3>Resposta correta</h3>
+          <input type="text" name="input-${i}-correct-answer" class="input-${i}-correct-answer" placeholder="Resposta correta">
+          <input type="text" name="input-${i}-correct-imgurl" class="input-${i}-correct-imgurl" placeholder="URL da imagem">
+  
+          <h3>Respostas incorretas</h3>
+          <input type="text" name="input-${i}-incorrect-answer-1" class="input-${i}-incorrect-answer-1" placeholder="Resposta incorreta 1">
+          <input type="text" name="input-${i}-incorrect-imgurl-1" class="input-${i}-incorrect-imgurl-1" placeholder="URL da imagem 1">
+          <div class="separator"></div>
+          <input type="text" name="input-${i}-incorrect-answer-2" class="input-${i}-incorrect-answer-2" placeholder="Resposta incorreta 2">
+          <input type="text" name="input-${i}-incorrect-imgurl-2" class="input-${i}-incorrect-imgurl-2" placeholder="URL da imagem 2">
+          <div class="separator"></div>
+          <input type="text" name="input-${i}-incorrect-answer-3" class="input-${i}-incorrect-answer-3" placeholder="Resposta incorreta 3">
+          <input type="text" name="input-${i}-incorrect-imgurl-3" class="input-${i}-incorrect-imgurl-3" placeholder="URL da imagem 3">
+        </div>
+        <button onclick="editQuestion(this)"><ion-icon name="create-outline"></ion-icon></button>
+      </div>`;
+  }
+  let quest1 = document.querySelector(".questions").firstElementChild;
+  let icon1 = quest1.lastElementChild;
+  let inputs1 = icon1.previousElementSibling;
+
+  quest1.classList.add("open");
+  quest1.classList.remove("closed");
+  icon1.classList.add("escondido");
+  inputs1.classList.remove("escondido");
+}
+
+function loadLevels(){
+  const levelsTag = document.querySelector('.levels');
+  let numLevels = inputQuizzNLevels.value;
+  
+  for (let i=1; i<=numLevels; i++){
+    levelsTag.innerHTML += 
+      `<div class="forms level closed">
+        <h3>Nível ${i}</h3>
+        <div class="inputs inputs-${i} escondido">
+          <input type="text" name="input-${i}-level-title" class="input-${i}-level-title" placeholder="Título do nível">
+          <input type="text" name="input-${i}-level-percent" class="input-${i}-level-percent" placeholder="% de acerto mínima">
+          <input type="text" name="input-${i}-level-imgurl" class="input-${i}-level-imgurl" placeholder="URL da imagem do nível">
+          <input type="text" name="input-${i}-level-text" class="input-${i}-level-text" placeholder="Descrição do nível">
+        </div>
+        <button onclick="editLevel(this)"><ion-icon name="create-outline"></ion-icon></button>
+      </div>`;
+  }
+  let level1 = document.querySelector(".levels").firstElementChild;
+  let icon1 = level1.lastElementChild;
+  let inputs1 = icon1.previousElementSibling;
+
+  level1.classList.add("open");
+  level1.classList.remove("closed");
+  icon1.classList.add("escondido");
+  inputs1.classList.remove("escondido");
+}
+
+
 
 // function sendMsg(){
 //     let quizzObject = {
