@@ -179,9 +179,10 @@ function quizzesRecebidos() {
   </figure>
     `
 }})
-promise.catch((err) => {
-    console.log(err)
+promise.catch((erro) => {
+    alert("Erro no servidor! Atualize a página")
 })
 }
 quizzesRecebidos();
+
 // FIM TELA 1 
