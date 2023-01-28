@@ -1,14 +1,9 @@
-//---------------------------------TELA 2
-
+// ---------- TELA 2 --------------------------------------------------------------------------------
 
 const promise=axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/1');
 
 tela2();
-function tela2(){
-
-promise.then(PegarUmQuizz);
-
-}
+function tela2(){ promise.then(PegarUmQuizz); }
 
 let indexPergunta=0;
 let qntPerguntas;
@@ -19,66 +14,54 @@ let acertos=0;
 let clicks=0;
 
 function PegarUmQuizz(resposta){
-    qntPerguntas=resposta.data.questions.length;
-    console.log(resposta);
-    tituloQuizz=resposta.data.title;
-    document.querySelector(".titulo h1").innerHTML=tituloQuizz;
-    document.querySelector(".titulo").style.backgroundImage = `url(${resposta.data.image})`;
-    //document.querySelector(".titulo").style.backgroundColor= "rgba(0, 0, 0, 0.6)";  FILTRO PRETO NA IMAGEM
-    for(let i=0;i<resposta.data.questions.length;i++){
-    
+  qntPerguntas=resposta.data.questions.length;
+  console.log(resposta);
+  tituloQuizz=resposta.data.title;
+  document.querySelector(".titulo h1").innerHTML=tituloQuizz;
+  document.querySelector(".titulo").style.backgroundImage = `url(${resposta.data.image})`;
+  //document.querySelector(".titulo").style.backgroundColor= "rgba(0, 0, 0, 0.6)";  FILTRO PRETO NA IMAGEM
+
+  for(let i=0;i<resposta.data.questions.length;i++){
     arrayRespostas=[];
                     
-    document.querySelector(".conteudo-quizz").innerHTML+=`
-    <div class="quizz ">
-    </div>` ;
+    document.querySelector(".conteudo-quizz").innerHTML+=
+      `<div class="quizz "></div>`;
 
-    document.querySelector('.conteudo-quizz').children[i].innerHTML+=`
-                <div class="pergunta">
-                <h2>${resposta.data.questions[i].title}</h2>
-                </div>
-                <div class="respostas">
-                </div>
-                <div class="auxiliar${i}"></div>
-            `;
+    document.querySelector('.conteudo-quizz').children[i].innerHTML+=
+      `<div class="pergunta">
+        <h2>${resposta.data.questions[i].title}</h2>
+      </div>
+      <div class="respostas"></div>
+      <div class="auxiliar${i}"></div>`;
+
     document.querySelector('.conteudo-quizz').children[i].querySelector(".pergunta").style.backgroundColor = `${resposta.data.questions[i].color}`;
         
-            for(let j=0;j<resposta.data.questions[i].answers.length;j++){
-              if(resposta.data.questions[i].answers[j].isCorrectAnswer==true){
-              let cadaResposta= `
-              <div class="resposta respostaCorreta" onclick=selecionarResposta(this)>
-                  <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
-                  <h3>${resposta.data.questions[i].answers[j].text}</h3>
-              </div>
-              `;
-              
-              arrayRespostas.push(cadaResposta);
-              }else{
-                let cadaResposta= `
-              <div class="resposta respostaErrada" onclick=selecionarResposta(this)>
-                  <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
-                  <h3>${resposta.data.questions[i].answers[j].text}</h3>
-              </div>
-              `;
-              arrayRespostas.push(cadaResposta);
-              }
-            }
+    for(let j=0;j<resposta.data.questions[i].answers.length;j++){
+      if(resposta.data.questions[i].answers[j].isCorrectAnswer==true){
+        let cadaResposta= 
+        `<div class="resposta respostaCorreta" onclick=selecionarResposta(this)>
+            <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
+            <h3>${resposta.data.questions[i].answers[j].text}</h3>
+        </div>`;
+        arrayRespostas.push(cadaResposta);
 
-            arrayRespostasSorteado=arrayRespostas.sort(comparador);
-
-            for(let k=0;k<resposta.data.questions[i].answers.length;k++){
-              document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").innerHTML+=arrayRespostasSorteado[k];
-                         
-              
-              
-            }
-           
-            
-            
+      } else {
+        let cadaResposta=
+        `<div class="resposta respostaErrada" onclick=selecionarResposta(this)>
+            <img src="${resposta.data.questions[i].answers[j].image}" class="img-resposta" alt="">
+            <h3>${resposta.data.questions[i].answers[j].text}</h3>
+        </div>`;
+        arrayRespostas.push(cadaResposta);
       }
-    
-      
- }
+    }
+
+    arrayRespostasSorteado=arrayRespostas.sort(comparador);
+
+    for(let k=0;k<resposta.data.questions[i].answers.length;k++){
+      document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").innerHTML+=arrayRespostasSorteado[k];
+    }
+  }
+}
        
 function comparador(){
   return Math.random() -0.5;
@@ -173,4 +156,7 @@ function condicaoFinalQuizz(response){
     
   }
 }
-//-------------------------------------------------FIM TELA 2
+
+// ---------- FIM TELA 2 --------------------------------------------------------------------------------
+
+// ---------- TELA 3 --------------------------------------------------------------------------------
