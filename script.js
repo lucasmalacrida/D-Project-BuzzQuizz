@@ -174,3 +174,31 @@ function condicaoFinalQuizz(response){
   }
 }
 //-------------------------------------------------FIM TELA 2
+
+
+// TELA 1 
+function randomNumber() {
+  return Math.floor(Math.random() * 49);
+}
+
+const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
+
+function quizzesRecebidos() {
+  const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
+  promise.then((res) => {
+    console.log(res)
+    for(let i = 0; i<6;i++){
+      let randomNum = randomNumber();
+    quizzRecebidos.innerHTML += `
+    <figure id="model-quiz">
+    <img src="${res.data[randomNum].image}"/>  
+    <figcaption>${res.data[randomNum].title}</figcaption>
+  </figure>
+    `
+}})
+promise.catch((err) => {
+    console.log(err)
+})
+}
+quizzesRecebidos();
+// FIM TELA 1 
