@@ -5,7 +5,9 @@ function randomNumber() {
 }
 function quizzSelecionado(selecionado){
   const quiz = Number(selecionado.id);
-  PegarUmQuizz(quiz);
+  let promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
+  promise.then(PegarUmQuizz);
+  toPage2();
 }
 const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
 
@@ -27,6 +29,10 @@ promise.catch((erro) => {
 function toPage3(){
   document.querySelector(".containerPage1").classList.add("escondido");
   document.querySelector(".page-3").classList.remove("escondido");
+}
+function toPage2(){
+  document.querySelector(".containerPage1").classList.add("escondido");
+  document.querySelector(".pagina-quizz").classList.remove("escondido");
 }
 quizzesRecebidos();
 
