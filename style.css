@@ -201,7 +201,7 @@ header{
     border-radius: 5px;
     width: 340px;
     height: 181px;
-    background-image: linear-gradient(to right, black, transparent);
+    background-image: linear-gradient(to top, black, transparent);
 }
 .todosQuizzesGrid{
     margin: 12px 0px;
