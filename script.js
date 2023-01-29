@@ -3,16 +3,18 @@ let todosQuizzesArray = [];
 function randomNumber() {
   return Math.floor(Math.random() * 49);
 }
+let quiz;
+let promessa;
 function quizzSelecionado(selecionado){
-  const quiz = Number(selecionado.id);
-  let promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
-  promise.then(PegarUmQuizz);
+  quiz = Number(selecionado.id);
+  promessa = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
+  promessa.then(PegarUmQuizz);
   toPage2();
 }
 const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
 
 function quizzesRecebidos() {
-  const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
+  const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
   promise.then((res) => {
     for(let i = 0; i< res.data.length;i++){
     quizzRecebidos.innerHTML += `
@@ -33,6 +35,7 @@ function toPage3(){
 function toPage2(){
   document.querySelector(".containerPage1").classList.add("escondido");
   document.querySelector(".pagina-quizz").classList.remove("escondido");
+  tela2();
 }
 quizzesRecebidos();
 
@@ -40,10 +43,10 @@ quizzesRecebidos();
 
 // ---------- TELA 2 --------------------------------------------------------------------------------
 
-const promise=axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/1');
+//let promise=axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
 
-tela2();
-function tela2(){ promise.then(PegarUmQuizz); }
+
+function tela2(){ promessa.then(PegarUmQuizz); }
 
 let indexPergunta=0;
 let qntPerguntas;
@@ -143,7 +146,7 @@ function selecionarResposta(x){
   x.parentElement.querySelector(".respostaCorreta h3").style.color="#009c22";
 
   criarAbaFinalQuizz();
-  promise.then(condicaoFinalQuizz);
+  promessa.then(condicaoFinalQuizz);
 }
 
 let resultado;
