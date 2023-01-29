@@ -44,9 +44,6 @@ quizzesRecebidos();
 
 // ---------- TELA 2 --------------------------------------------------------------------------------
 
-//let promise=axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
-
-
 function tela2(){ promessa.then(PegarUmQuizz); }
 
 let indexPergunta=0;
@@ -63,8 +60,6 @@ function PegarUmQuizz(resposta){
   tituloQuizz=resposta.data.title;
   document.querySelector(".titulo h1").innerHTML=tituloQuizz;
   document.querySelector(".titulo").style.backgroundImage = `url(${resposta.data.image})`;
-  //document.querySelector(".titulo").style.backgroundColor= "rgba(0, 0, 0, 0.6)";  FILTRO PRETO NA IMAGEM
-
   document.querySelector(".conteudo-quizz").innerHTML="";
 
   for(let i=0;i<resposta.data.questions.length;i++){
