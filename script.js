@@ -5,8 +5,7 @@ function randomNumber() {
 }
 function quizzSelecionado(selecionado){
   const quiz = Number(selecionado.id);
-  const promese = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
-  promese.then(PegarUmQuizz);
+  PegarUmQuizz(quiz);
 }
 const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
 
