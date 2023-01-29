@@ -200,7 +200,9 @@ function reiniciarQuizz(){
 }
 
 function voltarHome(){
-
+  document.querySelector(".pagina-quizz").classList.add("escondido");
+  document.querySelector(".containerPage1").classList.remove("escondido");
+  document.querySelector(".containerPage1").scrollIntoView(true);
 }
 // ---------- FIM TELA 2 --------------------------------------------------------------------------------
 
