@@ -302,7 +302,7 @@ function loadQuestions(){
 
 function loadLevels(){
   const levelsTag = document.querySelector('.levels');
-  let numLevels = inputQuizzNLevels.value;
+  let numLevels = Number(inputQuizzNLevels.value);
   
   for (let i=1; i<=numLevels; i++){
     levelsTag.innerHTML += 
@@ -327,6 +327,52 @@ function loadLevels(){
   inputs1.classList.remove("escondido");
 }
 
+// ---------- TELA 3.2 --------------------------------------------------------------------------------
+
+function loadQuizzQuestions(){
+  let numQuestions = Number(inputQuizzNQuestions.value);
+  for (let i=1; i<=numQuestions; i++){
+    let question_i = {
+      title: document.querySelector(`.input-${i}-question-text`).value, 
+      color: document.querySelector(`.input-${i}-question-bg`).value, 
+      answers: [
+        {
+          text : document.querySelector(`.input-${i}-correct-answer`).value,
+          image : document.querySelector(`.input-${i}-correct-imgurl`).value,
+          isCorrectAnswer: true
+        }
+      ]
+    };
+
+    for (let j=1; j<=3;j++){
+      let answer_j = {
+        text : document.querySelector(`.input-${i}-incorrect-answer-${j}`).value,
+        image : document.querySelector(`.input-${i}-incorrect-imgurl-${j}`).value,
+        isCorrectAnswer: false
+      };
+      question_i.answers.push(answer_j);
+    }
+
+    quizzInfo.questions.push(question_i);
+  }
+}
+
+// ---------- TELA 3.3 --------------------------------------------------------------------------------
+
+function loadQuizzLevels(){
+  let numLevels = Number(inputQuizzNLevels.value);
+  for (let i=1; i<=numLevels; i++){
+    let level_i = {
+      title: document.querySelector(`.input-${i}-level-title`).value, 
+      image: document.querySelector(`.input-${i}-level-imgurl`).value, 
+      text: document.querySelector(`.input-${i}-level-text`).value,
+      minValue: Math.round(Number(document.querySelector(`.input-${i}-level-percent`).value))
+    };
+    quizzInfo.levels.push(level_i);
+  }
+}
+
+// ---------- TELA 3.4 --------------------------------------------------------------------------------
 
 
 // function sendMsg(){
@@ -349,11 +395,7 @@ function loadLevels(){
 //     }
 // }
 
-// ---------- TELA 3.2 --------------------------------------------------------------------------------
 
-// ---------- TELA 3.3 --------------------------------------------------------------------------------
-
-// ---------- TELA 3.4 --------------------------------------------------------------------------------
 
 
 // ---------- FIM TELA 3 --------------------------------------------------------------------------------
