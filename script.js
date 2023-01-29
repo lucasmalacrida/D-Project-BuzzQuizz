@@ -158,7 +158,7 @@ function criarAbaFinalQuizz(response){
             </div>
           </div>
         </div>`;
-    document.querySelector(".final-quizz h2").innerHTML=`${Math.ceil(resultado)}% de acerto: `;
+    document.querySelector(".final-quizz h2").innerHTML=`${Math.round(resultado)}% de acerto: `;
 
     setTimeout(function(){
     document.querySelector(`.final-quizz`).scrollIntoView(true);
@@ -345,12 +345,16 @@ function loadQuizzQuestions(){
     };
 
     for (let j=1; j<=3;j++){
-      let answer_j = {
-        text : document.querySelector(`.input-${i}-incorrect-answer-${j}`).value,
-        image : document.querySelector(`.input-${i}-incorrect-imgurl-${j}`).value,
-        isCorrectAnswer: false
-      };
-      question_i.answers.push(answer_j);
+      let incorrectAnswer_j = document.querySelector(`.input-${i}-incorrect-answer-${j}`).value;
+      let incorrectImgUrl_j = document.querySelector(`.input-${i}-incorrect-imgurl-${j}`).value;
+      if (incorrectAnswer_j!=='' && incorrectImgUrl_j!==''){
+        let answer_j = {
+          text : incorrectAnswer_j,
+          image : incorrectImgUrl_j,
+          isCorrectAnswer: false
+        };
+        question_i.answers.push(answer_j);
+      }
     }
 
     quizzInfo.questions.push(question_i);
@@ -366,7 +370,7 @@ function loadQuizzLevels(){
       title: document.querySelector(`.input-${i}-level-title`).value, 
       image: document.querySelector(`.input-${i}-level-imgurl`).value, 
       text: document.querySelector(`.input-${i}-level-text`).value,
-      minValue: Math.round(Number(document.querySelector(`.input-${i}-level-percent`).value))
+      minValue: Number(document.querySelector(`.input-${i}-level-percent`).value)
     };
     quizzInfo.levels.push(level_i);
   }
@@ -374,28 +378,19 @@ function loadQuizzLevels(){
 
 // ---------- TELA 3.4 --------------------------------------------------------------------------------
 
+function saveQuizz(){
+  axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzInfo).then(saveQuizzSucess).catch(saveQuizzError);
 
-// function sendMsg(){
-//     let quizzObject = {
-//         from: user.name,
-//         to: contact,
-//         text: msgInput.value,
-//         type: (visibility === "Reservadamente")? "private_message" : "message"
-//     }
+  function saveQuizzSucess(Response){
+    localStorage.setItem(Response.data.id , JSON.stringify(quizzInfo));
+    // loadYourQuizzes();
+    console.log(Response);
+    toFinal();
+  }
 
-//     axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzObject).then(sendMsgSucess).catch(sendMsgError);
-
-//     function sendMsgSucess(Response){
-//         loadMsgs();
-//     }
-
-//     function sendMsgError(Response){
-//         alert("Erro de conexão.");
-//         window.location.reload()
-//     }
-// }
-
-
-
+  function saveQuizzError(Response){
+    alert("Erro ao salvar Quizz.");
+  }
+}
 
 // ---------- FIM TELA 3 --------------------------------------------------------------------------------
