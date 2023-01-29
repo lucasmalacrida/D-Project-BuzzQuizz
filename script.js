@@ -135,7 +135,7 @@ function selecionarResposta(x){
   
   for(let i=0;i<nodeList.length;i++){
     nodeList[i].style.opacity = "0.3";
-    nodeList[i].style.color="#ff4b4b";
+    nodeList[i].querySelector("h3").style.color="#ff4b4b";
   }
 
   //indo para prox pergunta dps de 2s
