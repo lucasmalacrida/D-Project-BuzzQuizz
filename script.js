@@ -49,6 +49,8 @@ function PegarUmQuizz(resposta){
   document.querySelector(".titulo").style.backgroundImage = `url(${resposta.data.image})`;
   //document.querySelector(".titulo").style.backgroundColor= "rgba(0, 0, 0, 0.6)";  FILTRO PRETO NA IMAGEM
 
+  document.querySelector(".conteudo-quizz").innerHTML="";
+
   for(let i=0;i<resposta.data.questions.length;i++){
     arrayRespostas=[];
                     
@@ -134,12 +136,12 @@ function selecionarResposta(x){
 
 let resultado;
 
-function criarAbaFinalQuizz(response){
+function criarAbaFinalQuizz(){
   if(clicks==qntPerguntas){
     resultado=acertos/qntPerguntas*100;
     
     document.querySelector(".conteudo-quizz").innerHTML+=
-    `<div class="final-quizz">
+    `<div class="final-quizz escondido">
           <div class="dados">
             <h2>X% de acerto: Nice!</h2>
           </div>
@@ -151,10 +153,10 @@ function criarAbaFinalQuizz(response){
           </div>
           <div class="botoes">
             <div class="bot1">
-              <p class="txt-bot1">Reiniciar Quizz</p>
+              <p class="txt-bot1" onclick=reiniciarQuizz()>Reiniciar Quizz</p>
             </div>
             <div class="bot2">
-              <p class="txt-bot2">Voltar pra home</p>
+              <p class="txt-bot2" onclick=voltarHome()>Voltar pra home</p>
             </div>
           </div>
         </div>`;
@@ -168,8 +170,9 @@ function criarAbaFinalQuizz(response){
 }
 
 function condicaoFinalQuizz(response){
-  if(clicks==qntPerguntas){  
-    for(let j=response.data.levels.length-1;j>0;j--){
+  if(clicks==qntPerguntas){
+    document.querySelector(`.final-quizz`).classList.remove("escondido"); 
+    for(let j=response.data.levels.length-1;j>=0;j--){
       if(resultado>=response.data.levels[j].minValue){
         console.log(response.data.levels[j].image);
         document.querySelector(".img-final-quizz").src=response.data.levels[j].image;
@@ -179,6 +182,19 @@ function condicaoFinalQuizz(response){
       } 
     }
   }
+}
+
+function reiniciarQuizz(){
+  document.querySelector(".pagina-quizz").scrollIntoView(true);
+  document.querySelector(`.final-quizz`).classList.add("escondido");
+  clicks=0;
+  indexPergunta=0;
+  acertos=0;
+  tela2();
+}
+
+function voltarHome(){
+
 }
 // ---------- FIM TELA 2 --------------------------------------------------------------------------------
 
