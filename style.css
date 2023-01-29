@@ -181,14 +181,14 @@ header{
     border-radius: 50px;
 }
 
-#model-quiz {
+.model-quiz {
     display: inline-block;
     width: 340px;
     height: 181px;
     position: relative;
 }
   
-#model-quiz figcaption {
+.model-quiz figcaption {
     position: absolute;
     top: 130px;
     left: 19px;
@@ -197,7 +197,7 @@ header{
     color:#FFFFFF;
     border-radius: 5px;
 }
-#model-quiz img{
+.model-quiz img{
     border-radius: 5px;
     width: 340px;
     height: 181px;

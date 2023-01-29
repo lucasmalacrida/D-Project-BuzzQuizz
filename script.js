@@ -1,26 +1,33 @@
 // ---------- TELA 1 -------------------------------------------------------------------------------- 
+let todosQuizzesArray = [];
 function randomNumber() {
   return Math.floor(Math.random() * 49);
 }
-
+function quizzSelecionado(selecionado){
+  const quiz = Number(selecionado.id);
+  const promese = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
+  promese.then(PegarUmQuizz);
+}
 const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
 
 function quizzesRecebidos() {
   const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
   promise.then((res) => {
-    console.log(res)
-    for(let i = 0; i<6;i++){
-      let randomNum = randomNumber();
+    for(let i = 0; i< res.data.length;i++){
     quizzRecebidos.innerHTML += `
-    <figure id="model-quiz">
-    <img src="${res.data[randomNum].image}"/>  
-    <figcaption>${res.data[randomNum].title}</figcaption>
+    <figure class="model-quiz" id="${res.data[i].id}" onclick="quizzSelecionado(this)">
+    <img src="${res.data[[i]].image}"/>  
+    <figcaption>${res.data[[i]].title}</figcaption>
   </figure>
     `
 }})
 promise.catch((erro) => {
     alert("Erro no servidor! Atualize a página")
 })
+}
+function toPage3(){
+  document.querySelector(".containerPage1").classList.add("escondido");
+  document.querySelector(".page-3").classList.remove("escondido");
 }
 quizzesRecebidos();
 
