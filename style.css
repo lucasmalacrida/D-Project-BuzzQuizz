@@ -218,7 +218,7 @@ header{
 /* Tela 2 ---------------------------------------- */
 
 .titulo{
-    
+    filter: grayscale(60%);
     height: 227px;
     display: flex;
     align-items: center;
