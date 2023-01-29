@@ -249,10 +249,14 @@ function toHome(){
 const inputQuizzTitle = document.querySelector('.input-quizz-title');
 const inputQuizzImgUrl = document.querySelector('.input-quizz-imgurl');
 const inputQuizzNQuestions = document.querySelector('.input-quizz-n-questions');
+let numQuestions =  Number(inputQuizzNQuestions.value);
 const inputQuizzNLevels = document.querySelector('.input-quizz-n-levels');
+let numLevels = Number(inputQuizzNLevels.value);
+
 let quizzInfo = {title: "", image: "", questions: [], levels: []};
 
 function loadQuizzInfo(){
+  quizzInfo = {title: "", image: "", questions: [], levels: []};
   quizzInfo.title = inputQuizzTitle.value;
   quizzInfo.image = inputQuizzImgUrl.value;
 
@@ -263,8 +267,7 @@ function loadQuizzInfo(){
 
 function loadQuestions(){
   const questionsTag = document.querySelector('.questions');
-  let numQuestions = Number(inputQuizzNQuestions.value);
-  
+  questionsTag.innerHTML = '';
   for (let i=1; i<=numQuestions; i++){
     questionsTag.innerHTML += 
       `<div class="forms question closed">
@@ -302,8 +305,7 @@ function loadQuestions(){
 
 function loadLevels(){
   const levelsTag = document.querySelector('.levels');
-  let numLevels = Number(inputQuizzNLevels.value);
-  
+  levelsTag.innerHTML = '';
   for (let i=1; i<=numLevels; i++){
     levelsTag.innerHTML += 
       `<div class="forms level closed">
@@ -327,15 +329,33 @@ function loadLevels(){
   inputs1.classList.remove("escondido");
 }
 
+const isURL = (str) => { try { let url = new URL(str); return true; } catch { return false ;} };
+
+function validateInfos(){
+  numQuestions = Number(inputQuizzNQuestions.value);
+  numLevels = Number(inputQuizzNLevels.value);
+
+  let conditionTitle = (20<=quizzInfo.title.length && quizzInfo.title.length<=65);
+  let conditionImgUrl = isURL(quizzInfo.image);
+  let conditionNQuestions = (3<=numQuestions);
+  let conditionNLevels = (2<=numLevels);
+  if (conditionTitle && conditionImgUrl && conditionNQuestions && conditionNLevels){
+    loadQuestions();
+    loadLevels();
+    toQuestions();
+  } else {
+    alert("Erro de validação! Preencha os dados cumprindo os requisitos.");
+  }
+}
+
 // ---------- TELA 3.2 --------------------------------------------------------------------------------
 
 function loadQuizzQuestions(){
-  let numQuestions = Number(inputQuizzNQuestions.value);
   for (let i=1; i<=numQuestions; i++){
     let question_i = {
-      title: document.querySelector(`.input-${i}-question-text`).value, 
-      color: document.querySelector(`.input-${i}-question-bg`).value, 
-      answers: [
+      title : document.querySelector(`.input-${i}-question-text`).value, 
+      color : document.querySelector(`.input-${i}-question-bg`).value, 
+      answers : [
         {
           text : document.querySelector(`.input-${i}-correct-answer`).value,
           image : document.querySelector(`.input-${i}-correct-imgurl`).value,
@@ -361,35 +381,53 @@ function loadQuizzQuestions(){
   }
 }
 
+// function validateQuestions(){
+// }
+
 // ---------- TELA 3.3 --------------------------------------------------------------------------------
 
 function loadQuizzLevels(){
-  let numLevels = Number(inputQuizzNLevels.value);
+  quizzInfo.levels = [];
   for (let i=1; i<=numLevels; i++){
     let level_i = {
       title: document.querySelector(`.input-${i}-level-title`).value, 
       image: document.querySelector(`.input-${i}-level-imgurl`).value, 
       text: document.querySelector(`.input-${i}-level-text`).value,
-      minValue: Number(document.querySelector(`.input-${i}-level-percent`).value)
+      minValue: Math.round(Number(document.querySelector(`.input-${i}-level-percent`).value))
     };
     quizzInfo.levels.push(level_i);
+  }
+}
+
+function validateLevels(){
+  let minValueArray = [];
+  let conditionsArray = [];
+  for (let i=0; i<numLevels; i++){
+    let conditionTitle = (10<=quizzInfo.levels[i].title.length);
+    let conditionImgUrl = isURL(quizzInfo.levels[i].image);
+    let conditionText = (30<=quizzInfo.levels[i].text.length);
+    let conditionMinValue = (0<=quizzInfo.levels[i].minValue && quizzInfo.levels[i].minValue<=100);
+    
+    minValueArray.push(quizzInfo.levels[i].minValue);
+    conditionsArray.push(conditionTitle,conditionImgUrl,conditionText,conditionMinValue);
+  }
+
+  if ( !conditionsArray.includes(false) && minValueArray.includes(0)){
+    saveQuizz();
+  } else {
+    alert("Erro de validação! Preencha os dados cumprindo os requisitos.");
   }
 }
 
 // ---------- TELA 3.4 --------------------------------------------------------------------------------
 
 function saveQuizz(){
-  axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzInfo).then(saveQuizzSucess).catch(saveQuizzError);
+  axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzInfo).then(saveQuizzSucess).catch(x => alert("Erro ao salvar Quizz."));
 
   function saveQuizzSucess(Response){
     localStorage.setItem(Response.data.id , JSON.stringify(quizzInfo));
     // loadYourQuizzes();
-    console.log(Response);
     toFinal();
-  }
-
-  function saveQuizzError(Response){
-    alert("Erro ao salvar Quizz.");
   }
 }
 

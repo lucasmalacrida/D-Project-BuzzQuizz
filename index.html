@@ -57,7 +57,7 @@
         <input type="text" name="input-quizz-n-questions" class="input-quizz-n-questions" placeholder="Quantidade de perguntas do quizz">
         <input type="text" name="input-quizz-n-levels" class="input-quizz-n-levels" placeholder="Quantidade de níveis do quizz">
       </div>
-      <button onclick="loadQuizzInfo();loadQuestions();loadLevels();toQuestions()" class="final-button primary">Prosseguir pra criar perguntas</button>
+      <button onclick="loadQuizzInfo();validateInfos()" class="final-button primary">Prosseguir pra criar perguntas</button>
     </div>
 
     <!-- TELA 3.2 -->
@@ -79,7 +79,7 @@
         <!-- Aqui entram os Níveis -->
 
       </div>
-      <button onclick="loadQuizzLevels();saveQuizz()" class="final-button primary">Finalizar Quizz</button>
+      <button onclick="loadQuizzLevels();validateLevels()" class="final-button primary">Finalizar Quizz</button>
     </div>
 
     <!-- TELA 3.4 -->
