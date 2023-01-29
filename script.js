@@ -28,7 +28,8 @@ promise.catch((erro) => {
 }
 function toPage3(){
   document.querySelector(".containerPage1").classList.add("escondido");
-  document.querySelector(".page-3").classList.remove("escondido");
+  document.querySelector(".pagina-quizz").classList.add("escondido");
+  document.querySelector(".page-3-1").classList.remove("escondido");
 }
 function toPage2(){
   document.querySelector(".containerPage1").classList.add("escondido");
