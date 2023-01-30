@@ -20,6 +20,7 @@
   <body>
     <!-- Content -->
     <div class="container-header"><header><p>BuzzQuizz</p></header></div>
+
     <!-- TELA 1 -->
     <div class="containerPage1">
       <div class="seusQuizzes escondido">
@@ -27,15 +28,17 @@
         <ion-icon name="add-circle" class="plus" onclick="toPage3()"></ion-icon>
 
       </div>
+      
       <div class="boxTemp escondido"></div>
       <div class="criarQuizzBox">
           <p class="textBox">Você não criou nenhum quizz ainda :(</p>
           <button class="criarQuizzButton" onclick="toPage3()">Criar Quizz</button>
-          <!-- aqui os quizes são gerados via JS a partir do LocalStorage -->
+          <!-- Aqui entram os quizzes Locais -->
       </div>
+
       <h3 class="todosQuizzes">Todos os Quizzes</h3>
       <div class="todosQuizzesGrid">
-          <!-- aqui os quizes são gerados via JS -->
+          <!-- Aqui entram os quizzes do Servidor -->
       </div>
       <div class="gap-final"></div>
     </div>

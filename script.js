@@ -1,47 +1,43 @@
 // ---------- TELA 1 -------------------------------------------------------------------------------- 
-let todosQuizzesArray = [];
-function randomNumber() {
-  return Math.floor(Math.random() * 49);
-}
-let quiz;
-let promessa;
-function quizzSelecionado(selecionado){
-  quiz = Number(selecionado.id);
-  promessa = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quiz}`);
-  promessa.then(PegarUmQuizz);
-  toPage2();
-}
-const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
 
 function quizzesRecebidos() {
-  const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
-  promise.then((res) => {
-    for(let i = 0; i< res.data.length;i++){
-    quizzRecebidos.innerHTML += `
-    <figure class="model-quiz" id="${res.data[i].id}" onclick="quizzSelecionado(this)">
-    <img src="${res.data[[i]].image}"/>  
-    <figcaption>${res.data[[i]].title}</figcaption>
-  </figure>
-    `
-}})
-promise.catch((erro) => {
-    alert("Erro no servidor! Atualize a página");
-})
+  const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
+  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
+  .then((res) => {
+    for(let i = 0; i< res.data.length; i++){
+      quizzRecebidos.innerHTML += `
+      <figure class="model-quiz" id="${res.data[i].id}" onclick="quizzSelecionado(this)">
+        <img src="${res.data[i].image}"/>  
+        <figcaption>${res.data[i].title}</figcaption>
+      </figure>`
+    }
+  })
+  .catch((erro) => {
+      alert("Erro ao Carregar Quizzes! Atualize a página.");
+  });
 }
+
+let quizzSelected;
+function quizzSelecionado(selecionado){
+  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${Number(selecionado.id)}`)
+  .then(response => {loadQuizzSelected(response); quizzSelected = response;})
+  .catch(x => alert("Erro ao Selecionar Quizz. Tente novamente."));
+}
+
+function toPage2(){
+  document.querySelector(".containerPage1").classList.add("escondido");
+  document.querySelector(".pagina-quizz").classList.remove("escondido");
+}
+
 function toPage3(){
   document.querySelector(".containerPage1").classList.add("escondido");
   document.querySelector(".pagina-quizz").classList.add("escondido");
   document.querySelector(".page-3-1").classList.remove("escondido");
 }
-function toPage2(){
-  document.querySelector(".containerPage1").classList.add("escondido");
-  document.querySelector(".pagina-quizz").classList.remove("escondido");
-  tela2();
-}
 
 const boxTemp = document.querySelector(".boxTemp");
 let keys = Object.keys(localStorage);
-let numbers = keys.map(key => parseInt(key, 10));
+let numbers = keys.map(key => parseInt(key));
 
 async function meusQuizzes() {
   if(localStorage.length === 0){
@@ -72,16 +68,12 @@ async function meusQuizzes() {
   }
 }
 
-
-
 quizzesRecebidos();
 meusQuizzes();
 
 // ---------- FIM TELA 1 --------------------------------------------------------------------------------
 
 // ---------- TELA 2 --------------------------------------------------------------------------------
-
-function tela2(){ promessa.then(PegarUmQuizz); }
 
 let indexPergunta=0;
 let qntPerguntas;
@@ -91,7 +83,7 @@ let arrayRespostas=[];
 let acertos=0;
 let clicks=0;
 
-function PegarUmQuizz(resposta){
+function loadQuizzSelected(resposta){
   qntPerguntas=resposta.data.questions.length;
   console.log(resposta);
   tituloQuizz=resposta.data.title;
@@ -139,6 +131,7 @@ function PegarUmQuizz(resposta){
       document.querySelector('.conteudo-quizz').children[i].querySelector(".respostas").innerHTML+=arrayRespostasSorteado[k];
     }
   }
+  toPage2();
 }
        
 function comparador(){
@@ -179,7 +172,7 @@ function selecionarResposta(x){
   x.parentElement.querySelector(".respostaCorreta h3").style.color="#009c22";
 
   criarAbaFinalQuizz();
-  promessa.then(condicaoFinalQuizz);
+  condicaoFinalQuizz();
 }
 
 let resultado;
@@ -217,15 +210,15 @@ function criarAbaFinalQuizz(){
   }   
 }
 
-function condicaoFinalQuizz(response){
+function condicaoFinalQuizz(){
   if(clicks==qntPerguntas){
     document.querySelector(`.final-quizz`).classList.remove("escondido"); 
-    for(let j=response.data.levels.length-1;j>=0;j--){
-      if(resultado>=response.data.levels[j].minValue){
-        console.log(response.data.levels[j].image);
-        document.querySelector(".img-final-quizz").src=response.data.levels[j].image;
-        document.querySelector("h4").innerHTML=response.data.levels[j].text;
-        document.querySelector(".final-quizz h2").innerHTML+=response.data.levels[j].title;
+    for(let j=quizzSelected.data.levels.length-1;j>=0;j--){
+      if(resultado>=quizzSelected.data.levels[j].minValue){
+        console.log(quizzSelected.data.levels[j].image);
+        document.querySelector(".img-final-quizz").src=quizzSelected.data.levels[j].image;
+        document.querySelector("h4").innerHTML=quizzSelected.data.levels[j].text;
+        document.querySelector(".final-quizz h2").innerHTML+=quizzSelected.data.levels[j].title;
         break;
       } 
     }
@@ -238,7 +231,7 @@ function reiniciarQuizz(){
   clicks=0;
   indexPergunta=0;
   acertos=0;
-  tela2();
+  loadQuizzSelected(quizzSelected);
 }
 
 function voltarHome(){
@@ -246,6 +239,7 @@ function voltarHome(){
   document.querySelector(".containerPage1").classList.remove("escondido");
   document.querySelector(".containerPage1").scrollIntoView(true);
 }
+
 // ---------- FIM TELA 2 --------------------------------------------------------------------------------
 
 // ---------- TELA 3 - Interatividade Básica --------------------------------------------------------------------------------
