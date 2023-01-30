@@ -58,7 +58,7 @@ h4{
 /* Tela 3-1 */
 
 /* Tela 3-2 */
-.pagina-criar-quizz p {
+.page-3 p {
     font-weight: 700;
     font-size: 23px;
     line-height: 27px;
@@ -117,6 +117,10 @@ body{
     width: 100%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 header{
     background-color: #EC362D;
     height: 69px;
@@ -136,7 +140,7 @@ header{
     grid-row-gap: 1em;
     
 }
-.containerPage1{
+.page-1{
     display: grid;
     justify-content: center;
     align-items: center;
@@ -298,22 +302,9 @@ header{
     justify-content: center;
 }
 
-.botoes{
-    margin: 57px auto;
-    width: 260px;
-}
-
-.bot1{
-    background-color: red;
-    border-radius: 15px;
-    height: 52px;
-    text-align: center;
-}
-
-.bot2{
-    height: 44px;
-    text-align: center;
-    margin-top: 16px;
+.page-2 .primary {
+    margin-top: 57px;
+    margin-bottom: 9px;
 }
 
 /* Tela 3 ---------------------------------------- */
@@ -439,7 +430,7 @@ header{
         grid-column-gap: 15px;
         grid-row-gap: 1em;
     }
-    .containerPage1{
+    .page-1{
         display: block;
         margin-left: 12px;
     }
@@ -475,24 +466,16 @@ header{
         font-size: 17px;
     }
 
-    .bot1 ,.bot2{
-        height: 44px;
-    }
-
-    .botoes{
-        width: 220px;
-    }
-
 /* Tela 3 ---------------------------------------- */
     .forms {
         width: 100vw;
     }
 
-    .pagina-criar-quizz h3{
+    .page-3 h3{
         font-size: 20px;
     }
 
-    .pagina-criar-quizz p {
+    .page-3 p {
         padding-top: 38px;
         padding-bottom: 5px;
     }

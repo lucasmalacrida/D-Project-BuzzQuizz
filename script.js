@@ -6,7 +6,7 @@ function quizzesRecebidos() {
   .then((res) => {
     for(let i = 0; i< res.data.length; i++){
       quizzRecebidos.innerHTML += `
-      <figure class="model-quiz" id="${res.data[i].id}" onclick="quizzSelecionado(this)">
+      <figure class="model-quiz" id="${res.data[i].id}" onclick="toQuizz(this)">
         <img src="${res.data[i].image}"/>  
         <figcaption>${res.data[i].title}</figcaption>
       </figure>`
@@ -18,20 +18,22 @@ function quizzesRecebidos() {
 }
 
 let quizzSelected;
-function quizzSelecionado(selecionado){
-  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${Number(selecionado.id)}`)
+function toQuizz(selected){
+  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${Number(selected.id)}`)
   .then(response => {loadQuizzSelected(response); quizzSelected = response;})
   .catch(x => alert("Erro ao Selecionar Quizz. Tente novamente."));
 }
 
 function toPage2(){
-  document.querySelector(".containerPage1").classList.add("escondido");
-  document.querySelector(".pagina-quizz").classList.remove("escondido");
+  document.querySelector(".page-1").classList.add("escondido");
+  document.querySelector(".page-3-4").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
+  document.querySelector(".page-2").classList.remove("escondido");
 }
 
 function toPage3(){
-  document.querySelector(".containerPage1").classList.add("escondido");
-  document.querySelector(".pagina-quizz").classList.add("escondido");
+  document.querySelector(".page-1").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
   document.querySelector(".page-3-1").classList.remove("escondido");
 }
 
@@ -57,7 +59,7 @@ async function meusQuizzes() {
     const responses = await Promise.all(promises);
     for (let i = 0; i < responses.length; i++) {
       boxTemp.innerHTML += `
-        <figure class="model-quiz" id="${numbers[i]}" onclick="quizzSelecionado(this)">
+        <figure class="model-quiz" id="${numbers[i]}" onclick="toQuizz(this)">
           <img src="${responses[i].data.image}"/>  
           <figcaption>${responses[i].data.title}</figcaption>
         </figure>
@@ -165,7 +167,7 @@ function selecionarResposta(x){
 
   //indo para prox pergunta dps de 2s
   setTimeout(function(){
-  document.querySelector(`.auxiliar${indexPergunta}`).scrollIntoView(true);
+  document.querySelector(`.auxiliar${indexPergunta}`).scrollIntoView({behavior:'smooth'});
   indexPergunta++;
   },2000);
     
@@ -182,29 +184,23 @@ function criarAbaFinalQuizz(){
     resultado=acertos/qntPerguntas*100;
     
     document.querySelector(".conteudo-quizz").innerHTML+=
-    `<div class="final-quizz escondido">
-          <div class="dados">
-            <h2>X% de acerto: Nice!</h2>
+      `<div class="final-quizz escondido">
+        <div class="dados">
+          <h2>X% de acerto: Nice!</h2>
+        </div>
+        <div class="caixa">
+          <img src="./media/auxiliar.jpg" alt="" class="img-final-quizz">
+          <div class="txt">
+            <h4>Mensagem final</h4>
           </div>
-          <div class="caixa">
-            <img src="./media/auxiliar.jpg" alt="" class="img-final-quizz">
-            <div class="txt">
-              <h4>Mensagem final</h4>
-            </div>
-          </div>
-          <div class="botoes">
-            <div class="bot1">
-              <p class="txt-bot1" onclick=reiniciarQuizz()>Reiniciar Quizz</p>
-            </div>
-            <div class="bot2">
-              <p class="txt-bot2" onclick=voltarHome()>Voltar pra home</p>
-            </div>
-          </div>
-        </div>`;
+        </div>
+        <button onclick=reiniciarQuizz() class="final-button primary">Reiniciar Quizz</button>
+        <button onclick=toHome() class="final-button secondary">Voltar pra home</button>
+      </div>`;
     document.querySelector(".final-quizz h2").innerHTML=`${Math.round(resultado)}% de acerto: `;
 
     setTimeout(function(){
-    document.querySelector(`.final-quizz`).scrollIntoView(true);
+    document.querySelector(`.final-quizz`).scrollIntoView({behavior:'smooth'});
     indexPergunta++;
     },2000);
   }   
@@ -226,18 +222,18 @@ function condicaoFinalQuizz(){
 }
 
 function reiniciarQuizz(){
-  document.querySelector(".pagina-quizz").scrollIntoView(true);
-  document.querySelector(`.final-quizz`).classList.add("escondido");
+  document.querySelector(".page-2").classList.add("escondido");
   clicks=0;
   indexPergunta=0;
   acertos=0;
   loadQuizzSelected(quizzSelected);
 }
 
-function voltarHome(){
-  document.querySelector(".pagina-quizz").classList.add("escondido");
-  document.querySelector(".containerPage1").classList.remove("escondido");
-  document.querySelector(".containerPage1").scrollIntoView(true);
+function toHome(){
+  document.querySelector(".page-2").classList.add("escondido");
+  document.querySelector(".page-3-4").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
+  document.querySelector(".page-1").classList.remove("escondido");
 }
 
 // ---------- FIM TELA 2 --------------------------------------------------------------------------------
@@ -245,6 +241,7 @@ function voltarHome(){
 // ---------- TELA 3 - Interatividade Básica --------------------------------------------------------------------------------
 function toQuestions(){
   document.querySelector(".page-3-1").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
   document.querySelector(".page-3-2").classList.remove("escondido");
 }
 
@@ -263,10 +260,12 @@ function editQuestion(button){
   quest.classList.add("open");
   button.classList.add("escondido");
   button.previousElementSibling.classList.remove("escondido");
+  button.parentNode.firstElementChild.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 function toLevels(){
   document.querySelector(".page-3-2").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
   document.querySelector(".page-3-3").classList.remove("escondido");
 }
 
@@ -285,23 +284,13 @@ function editLevel(button){
   level.classList.add("open");
   button.classList.add("escondido");
   button.previousElementSibling.classList.remove("escondido");
+  button.parentNode.firstElementChild.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 function toFinal(){
   document.querySelector(".page-3-3").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
   document.querySelector(".page-3-4").classList.remove("escondido");
-}
-
-function toQuizz(){
-  document.querySelector(".page-3-4").classList.add("escondido");
-  document.querySelector(".pagina-quizz").classList.remove("escondido");
-  // ...
-}
-
-function toHome(){
-  document.querySelector(".page-3-4").classList.add("escondido");
-  document.querySelector(".containerPage1").classList.remove("escondido");
-  // ...
 }
 
 // ---------- TELA 3.1 --------------------------------------------------------------------------------
@@ -500,12 +489,14 @@ function loadQuizzLevels(){
 }
 
 // ---------- TELA 3.4 --------------------------------------------------------------------------------
+let CreatedQuizz;
 function saveQuizz(){
   axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzInfo).then(saveQuizzSucess).catch(x => alert("Erro ao salvar Quizz."));
 
   function saveQuizzSucess(Response){
-    localStorage.setItem(Response.data.id , JSON.stringify(quizzInfo));
-    // loadYourQuizzes();
+    CreatedQuizz = Response.data;
+    localStorage.setItem(CreatedQuizz.id , JSON.stringify(quizzInfo));
+    // quizzesRecebidos();
     document.querySelectorAll('input').forEach( x => x.value = '');
     toFinal();
   }

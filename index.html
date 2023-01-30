@@ -22,13 +22,12 @@
     <div class="container-header"><header><p>BuzzQuizz</p></header></div>
 
     <!-- TELA 1 -->
-    <div class="containerPage1">
+    <div class="page-1">
       <div class="seusQuizzes escondido">
         <h3>Seus Quizzes</h3>
-        <ion-icon name="add-circle" class="plus" onclick="toPage3()"></ion-icon>
-
+        <button onclick="toPage3()"><ion-icon name="add-circle" class="plus"></ion-icon></button>
       </div>
-      
+
       <div class="boxTemp escondido"></div>
       <div class="criarQuizzBox">
           <p class="textBox">Você não criou nenhum quizz ainda :(</p>
@@ -45,7 +44,7 @@
     <!-- FIM TELA 1 -->
 
     <!-- TELA 2 -->
-    <div class="pagina-quizz escondido">
+    <div class="page-2 escondido">
       <div class="titulo">
         <h1></h1>
       </div>
@@ -55,7 +54,7 @@
     <!-- FIM TELA 2 -->
 
     <!-- TELA 3.1 -->
-    <div class="pagina-criar-quizz page-3-1 escondido">
+    <div class="page-3 page-3-1 escondido">
       <p>Comece pelo começo</p>
       <div class="forms">
         <input type="text" name="input-quizz-title" class="input-quizz-title" placeholder="Título do seu quizz">
@@ -67,7 +66,7 @@
     </div>
 
     <!-- TELA 3.2 -->
-    <div class="pagina-criar-quizz page-3-2 escondido">
+    <div class="page-3 page-3-2 escondido">
       <p>Crie suas perguntas</p>
       <div class="questions">
 
@@ -78,7 +77,7 @@
     </div>
     
     <!-- TELA 3.3 -->
-    <div class="pagina-criar-quizz page-3-3 escondido">
+    <div class="page-3 page-3-3 escondido">
       <p>Agora, decida os níveis</p>
       <div class="levels">
 
@@ -89,7 +88,7 @@
     </div>
 
     <!-- TELA 3.4 -->
-    <div class="pagina-criar-quizz page-3-4 escondido">
+    <div class="page-3 page-3-4 escondido">
       <p>Seu quizz está pronto!</p>
       <div class="quizz-thumb">
         <p class="quizz-title"></p>
@@ -97,7 +96,7 @@
         <img class="quizz-img" alt="Img Quizz Criado" src="">
       </div>
       
-      <button onclick="toQuizz()" class="final-button primary">Acessar Quizz</button>
+      <button onclick="toQuizz(CreatedQuizz)" class="final-button primary">Acessar Quizz</button>
       <button onclick="toHome()" class="final-button secondary">Voltar pra home</button>
     </div>
 
