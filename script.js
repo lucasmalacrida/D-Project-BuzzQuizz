@@ -1,53 +1,13 @@
 // ---------- TELA 1 -------------------------------------------------------------------------------- 
 
-function quizzesRecebidos() {
-  const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
-  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
-  .then((res) => {
-    for(let i = 0; i< res.data.length; i++){
-      for(let j = 0; i< numbers.length; i++){
-        if(res.data[i].id === numbers[j]){
-          return;
-        }
-      }
-      quizzRecebidos.innerHTML += 
-      `<div class="quizz-thumb" id="${res.data[i].id}" onclick="toQuizz(this)">
-        <p class="quizz-title">${res.data[i].title}</p>
-        <div class="quizz-gradient"></div>
-        <img class="quizz-img" alt="Img Quizz" src="${res.data[i].image}">
-      </div>`;
-    }
-  })
-  .catch((erro) => {
-      alert("Erro ao Carregar Quizzes! Atualize a página.");
-  });
-}
-
-let quizzSelected;
-function toQuizz(selected){
-  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${Number(selected.id)}`)
-  .then(response => {loadQuizzSelected(response); quizzSelected = response;})
-  .catch(x => alert("Erro ao Selecionar Quizz. Tente novamente."));
-}
-
-function toPage2(){
-  document.querySelector(".page-1").classList.add("escondido");
-  document.querySelector(".page-3-4").classList.add("escondido");
-  document.querySelector(".container-header").scrollIntoView();
-  document.querySelector(".page-2").classList.remove("escondido");
-}
-
-function toPage3(){
-  document.querySelector(".page-1").classList.add("escondido");
-  document.querySelector(".container-header").scrollIntoView();
-  document.querySelector(".page-3-1").classList.remove("escondido");
-}
-
 const boxTemp = document.querySelector(".boxTemp");
 let keys = Object.keys(localStorage);
 let numbers = keys.map(key => parseInt(key));
 
 async function meusQuizzes() {
+  boxTemp.innerHTML = '';
+  keys = Object.keys(localStorage);
+  numbers = keys.map(key => parseInt(key));
   if(localStorage.length === 0){
     return;
   }
@@ -75,9 +35,52 @@ async function meusQuizzes() {
     alert("Erro no servidor! Atualize a página");
   }
 }
-
-quizzesRecebidos();
 meusQuizzes();
+
+function quizzesRecebidos() {
+  const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
+  quizzRecebidos.innerHTML = '';
+  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
+  .then((res) => {
+    for(let i = 0; i< res.data.length; i++){
+      for(let j = 0; i< numbers.length; i++){
+        if(res.data[i].id === numbers[j]){
+          return;
+        }
+      }
+      quizzRecebidos.innerHTML += 
+      `<div class="quizz-thumb" id="${res.data[i].id}" onclick="toQuizz(this)">
+        <p class="quizz-title">${res.data[i].title}</p>
+        <div class="quizz-gradient"></div>
+        <img class="quizz-img" alt="Img Quizz" src="${res.data[i].image}">
+      </div>`;
+    }
+  })
+  .catch((erro) => {
+      alert("Erro ao Carregar Quizzes! Atualize a página.");
+  });
+}
+quizzesRecebidos();
+
+let quizzSelected;
+function toQuizz(selected){
+  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${Number(selected.id)}`)
+  .then(response => {loadQuizzSelected(response); quizzSelected = response;})
+  .catch(x => alert("Erro ao Selecionar Quizz. Tente novamente."));
+}
+
+function toPage2(){
+  document.querySelector(".page-1").classList.add("escondido");
+  document.querySelector(".page-3-4").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
+  document.querySelector(".page-2").classList.remove("escondido");
+}
+
+function toPage3(){
+  document.querySelector(".page-1").classList.add("escondido");
+  document.querySelector(".container-header").scrollIntoView();
+  document.querySelector(".page-3-1").classList.remove("escondido");
+}
 
 // ---------- FIM TELA 1 --------------------------------------------------------------------------------
 
@@ -507,7 +510,8 @@ function saveQuizz(){
   function saveQuizzSucess(Response){
     CreatedQuizz = Response.data;
     localStorage.setItem(CreatedQuizz.id , JSON.stringify(quizzInfo));
-    // quizzesRecebidos();
+    meusQuizzes();
+    quizzesRecebidos();
     document.querySelectorAll('input').forEach( x => x.value = '');
     toFinal();
   }
