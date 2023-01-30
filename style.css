@@ -53,6 +53,13 @@ h4{
     line-height: 25px;
 }
 
+.page-1 .quizz-title {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: white;
+}
+
 /* Tela 3 ---------------------------------------- */
 /* Tela 3-1 */
 
@@ -195,36 +202,45 @@ header{
     border-radius: 50px;
 }
 
-.model-quiz {
-    display: inline-block;
-    width: 340px;
-    height: 181px;
+.page-1 .quizz-thumb {
     position: relative;
-}
-  
-.model-quiz figcaption {
-    position: absolute;
-    top: 130px;
-    left: 19px;
-    font-weight: 400;
-    font-size: 19px;
-    color:#FFFFFF;
-    border-radius: 5px;
-}
-.model-quiz img{
-    border-radius: 5px;
     width: 340px;
     height: 181px;
-    background-image: linear-gradient(to top, black, transparent);
 }
+
+.page-1 .quizz-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.page-1 .quizz-gradient {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1));
+    border-radius: 5px;
+}
+
+.page-1 .quizz-title {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    bottom: 10px;
+}
+
 .todosQuizzesGrid{
     margin: 12px 0px;
     display: grid;
-    width: 1053px;
+    width: 1051px;
     grid-template-columns: repeat(3,1fr);
     grid-column-gap: 15px;
     grid-row-gap: 1em;
 }
+
 .gap-final{
     height: 200px;
 }
@@ -381,7 +397,7 @@ header{
 /* Tela 3-3 */
 
 /* Tela 3-4 */
-.quizz-thumb {
+.page-3-4 .quizz-thumb {
     position: relative;
     width: 500px;
     height: 266px;
@@ -394,7 +410,7 @@ header{
     border-radius: 5px;
 }
 
-.quizz-gradient {
+.page-3-4 .quizz-gradient {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -408,8 +424,8 @@ header{
 .page-3-4 .quizz-title {
     position: absolute;
     z-index: 2;
-    left: 23px;
-    bottom: 9px;
+    left: 20px;
+    bottom: 10px;
 }
 
 .page-3-4 .primary {
@@ -451,7 +467,7 @@ header{
     .conteudo-quizz{
         width: 100%;
     }
-    
+
     h3{
         font-size: 13px;
     }

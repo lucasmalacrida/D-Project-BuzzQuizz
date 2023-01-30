@@ -5,11 +5,12 @@ function quizzesRecebidos() {
   axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
   .then((res) => {
     for(let i = 0; i< res.data.length; i++){
-      quizzRecebidos.innerHTML += `
-      <figure class="model-quiz" id="${res.data[i].id}" onclick="toQuizz(this)">
-        <img src="${res.data[i].image}"/>  
-        <figcaption>${res.data[i].title}</figcaption>
-      </figure>`
+      quizzRecebidos.innerHTML += 
+      `<div class="quizz-thumb" id="${res.data[i].id}" onclick="toQuizz(this)">
+        <p class="quizz-title">${res.data[i].title}</p>
+        <div class="quizz-gradient"></div>
+        <img class="quizz-img" alt="Img Quizz" src="${res.data[i].image}">
+      </div>`;
     }
   })
   .catch((erro) => {
@@ -58,12 +59,12 @@ async function meusQuizzes() {
   try {
     const responses = await Promise.all(promises);
     for (let i = 0; i < responses.length; i++) {
-      boxTemp.innerHTML += `
-        <figure class="model-quiz" id="${numbers[i]}" onclick="toQuizz(this)">
-          <img src="${responses[i].data.image}"/>  
-          <figcaption>${responses[i].data.title}</figcaption>
-        </figure>
-      `;
+      boxTemp.innerHTML += 
+      `<div class="quizz-thumb" id="${numbers[i]}" onclick="toQuizz(this)">
+        <p class="quizz-title">${responses[i].data.title}</p>
+        <div class="quizz-gradient"></div>
+        <img class="quizz-img" alt="Img Quizz" src="${responses[i].data.image}">
+      </div>`;
     }
   } catch (error) {
     alert("Erro no servidor! Atualize a página");
