@@ -44,7 +44,7 @@ let keys = Object.keys(localStorage);
 let numbers = keys.map(key => parseInt(key, 10));
 
 function meusQuizzes() {
-  if(localStorage.length = 0){
+  if(localStorage.length == 0){
     return;
   }
   if (localStorage.length > 0) {
@@ -54,7 +54,7 @@ function meusQuizzes() {
     
       
     for (let i = 0; i < numbers.length; i++) {
-      promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${numbers[i]}`);
+      let promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${numbers[i]}`);
       promise.then((res) => {
       console.log(res);
         boxTemp.innerHTML += `
@@ -64,15 +64,15 @@ function meusQuizzes() {
           </figure>
             `;
       });
+      promise.catch((erro) => {
+        alert("Erro no servidor! Atualize a página");
+      });
     }
   } else {
     document.querySelector(".textBox").classList.remove("escondido");
     document.querySelector(".criarQuizzButton").classList.remove("escondido");
   }
 
-  promise.catch((erro) => {
-    alert("Erro no servidor! Atualize a página");
-  });
 }
 
 
