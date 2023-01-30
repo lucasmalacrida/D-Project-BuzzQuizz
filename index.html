@@ -39,7 +39,7 @@
     <!-- FIM TELA 1 -->
 
     <!-- TELA 2 -->
-    <div class="pagina-quizz">
+    <div class="pagina-quizz escondido">
       <div class="titulo">
         <h1></h1>
       </div>
@@ -57,7 +57,7 @@
         <input type="text" name="input-quizz-n-questions" class="input-quizz-n-questions" placeholder="Quantidade de perguntas do quizz">
         <input type="text" name="input-quizz-n-levels" class="input-quizz-n-levels" placeholder="Quantidade de níveis do quizz">
       </div>
-      <button onclick="loadQuizzInfo();validateInfos()" class="final-button primary">Prosseguir pra criar perguntas</button>
+      <button onclick="loadQuizzInfo()" class="final-button primary">Prosseguir pra criar perguntas</button>
     </div>
 
     <!-- TELA 3.2 -->
@@ -68,7 +68,7 @@
         <!-- Aqui entram as Perguntas -->
 
       </div>
-      <button onclick="loadQuizzQuestions();toLevels()" class="final-button primary">Prosseguir pra criar níveis</button>
+      <button onclick="loadQuizzQuestions()" class="final-button primary">Prosseguir pra criar níveis</button>
     </div>
     
     <!-- TELA 3.3 -->
@@ -79,7 +79,7 @@
         <!-- Aqui entram os Níveis -->
 
       </div>
-      <button onclick="loadQuizzLevels();validateLevels()" class="final-button primary">Finalizar Quizz</button>
+      <button onclick="loadQuizzLevels()" class="final-button primary">Finalizar Quizz</button>
     </div>
 
     <!-- TELA 3.4 -->

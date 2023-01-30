@@ -284,14 +284,29 @@ let numLevels = Number(inputQuizzNLevels.value);
 
 let quizzInfo = {title: "", image: "", questions: [], levels: []};
 
+const isURL = (str) => { try { let url = new URL(str); return true; } catch { return false ;} };
+
 function loadQuizzInfo(){
   quizzInfo = {title: "", image: "", questions: [], levels: []};
   quizzInfo.title = inputQuizzTitle.value;
   quizzInfo.image = inputQuizzImgUrl.value;
+  numQuestions = Number(inputQuizzNQuestions.value);
+  numLevels = Number(inputQuizzNLevels.value);
 
-  let page3_4Tag = document.querySelector(".page-3-4 .quizz-thumb");
-  page3_4Tag.firstElementChild.innerHTML = quizzInfo.title;
-  page3_4Tag.lastElementChild.setAttribute("src",quizzInfo.image);
+  let conditionsArray = [];
+  if (20<=quizzInfo.title.length && quizzInfo.title.length<=65){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+  if (isURL(quizzInfo.image)){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+  if (3<=numQuestions){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+  if (2<=numLevels){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+
+  if (!conditionsArray.includes(false)){
+    loadQuestions();
+    loadLevels();
+    loadFinal();
+    toQuestions();
+  } else {
+    alert("Erro de validação! Preencha os dados cumprindo os requisitos.");
+  }
 }
 
 function loadQuestions(){
@@ -358,28 +373,27 @@ function loadLevels(){
   inputs1.classList.remove("escondido");
 }
 
-const isURL = (str) => { try { let url = new URL(str); return true; } catch { return false ;} };
-
-function validateInfos(){
-  numQuestions = Number(inputQuizzNQuestions.value);
-  numLevels = Number(inputQuizzNLevels.value);
-
-  let conditionTitle = (20<=quizzInfo.title.length && quizzInfo.title.length<=65);
-  let conditionImgUrl = isURL(quizzInfo.image);
-  let conditionNQuestions = (3<=numQuestions);
-  let conditionNLevels = (2<=numLevels);
-  if (conditionTitle && conditionImgUrl && conditionNQuestions && conditionNLevels){
-    loadQuestions();
-    loadLevels();
-    toQuestions();
-  } else {
-    alert("Erro de validação! Preencha os dados cumprindo os requisitos.");
-  }
+function loadFinal(){
+  let page3_4Tag = document.querySelector(".page-3-4 .quizz-thumb");
+  page3_4Tag.firstElementChild.innerHTML = quizzInfo.title;
+  page3_4Tag.lastElementChild.setAttribute("src",quizzInfo.image);
 }
 
 // ---------- TELA 3.2 --------------------------------------------------------------------------------
 
+function isHex(string){
+  let hex = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+  six_digit = string.slice(1,7);
+  if (string.length === 7 && string[0] === '#' && six_digit.split('').filter(x => hex.includes(x.toUpperCase())).join('') === six_digit){
+      return true;
+  } else {
+      return false;
+  }
+}
+
 function loadQuizzQuestions(){
+  quizzInfo.questions = [];
+  let conditionsArray = [];
   for (let i=1; i<=numQuestions; i++){
     let question_i = {
       title : document.querySelector(`.input-${i}-question-text`).value, 
@@ -393,6 +407,11 @@ function loadQuizzQuestions(){
       ]
     };
 
+    if (20 <= question_i.title.length){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    if (isHex(question_i.color)){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    if (question_i.answers[0].text !== ''){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    if (isURL(question_i.answers[0].image)){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+
     for (let j=1; j<=3;j++){
       let incorrectAnswer_j = document.querySelector(`.input-${i}-incorrect-answer-${j}`).value;
       let incorrectImgUrl_j = document.querySelector(`.input-${i}-incorrect-imgurl-${j}`).value;
@@ -403,20 +422,29 @@ function loadQuizzQuestions(){
           isCorrectAnswer: false
         };
         question_i.answers.push(answer_j);
+
+        if (answer_j.text !== ''){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+        if (isURL(answer_j.image)){ conditionsArray.push(true) } else { conditionsArray.push(false) }
       }
     }
-
     quizzInfo.questions.push(question_i);
+    
+    if (2<=question_i.answers.length){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+  }
+
+  if (!conditionsArray.includes(false)){
+    toLevels();
+  } else {
+    alert("Erro de validação! Preencha os dados cumprindo os requisitos.");
   }
 }
-
-// function validateQuestions(){
-// }
 
 // ---------- TELA 3.3 --------------------------------------------------------------------------------
 
 function loadQuizzLevels(){
   quizzInfo.levels = [];
+  let conditionsArray = [];
+  let minValueArray = [];
   for (let i=1; i<=numLevels; i++){
     let level_i = {
       title: document.querySelector(`.input-${i}-level-title`).value, 
@@ -425,20 +453,12 @@ function loadQuizzLevels(){
       minValue: Math.round(Number(document.querySelector(`.input-${i}-level-percent`).value))
     };
     quizzInfo.levels.push(level_i);
-  }
-}
 
-function validateLevels(){
-  let minValueArray = [];
-  let conditionsArray = [];
-  for (let i=0; i<numLevels; i++){
-    let conditionTitle = (10<=quizzInfo.levels[i].title.length);
-    let conditionImgUrl = isURL(quizzInfo.levels[i].image);
-    let conditionText = (30<=quizzInfo.levels[i].text.length);
-    let conditionMinValue = (0<=quizzInfo.levels[i].minValue && quizzInfo.levels[i].minValue<=100);
-    
-    minValueArray.push(quizzInfo.levels[i].minValue);
-    conditionsArray.push(conditionTitle,conditionImgUrl,conditionText,conditionMinValue);
+    if (10<=level_i.title.length){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    if (isURL(level_i.image)){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    if (30<=level_i.text.length){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    if ((0<=level_i.minValue && level_i.minValue<=100) && (document.querySelector(`.input-${i}-level-percent`).value !== '')){ conditionsArray.push(true) } else { conditionsArray.push(false) }
+    minValueArray.push(level_i.minValue);
   }
 
   if ( !conditionsArray.includes(false) && minValueArray.includes(0)){
@@ -456,6 +476,7 @@ function saveQuizz(){
   function saveQuizzSucess(Response){
     localStorage.setItem(Response.data.id , JSON.stringify(quizzInfo));
     // loadYourQuizzes();
+    document.querySelectorAll('input').forEach( x => x.value = '');
     toFinal();
   }
 }
