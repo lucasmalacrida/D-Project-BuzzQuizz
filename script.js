@@ -196,9 +196,9 @@ function criarAbaFinalQuizz(){
             <h4>Mensagem final</h4>
           </div>
         </div>
-        <button onclick=reiniciarQuizz() class="final-button primary">Reiniciar Quizz</button>
-        <button onclick=toHome() class="final-button secondary">Voltar pra home</button>
-      </div>`;
+      </div>
+      <button onclick=reiniciarQuizz() class="final-button primary">Reiniciar Quizz</button>
+      <button onclick=toHome() class="final-button secondary">Voltar pra home</button>`;
     document.querySelector(".final-quizz h2").innerHTML=`${Math.round(resultado)}% de acerto: `;
 
     setTimeout(function(){

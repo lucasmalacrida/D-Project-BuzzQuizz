@@ -38,24 +38,19 @@ h3{
     color: black; 
 }
 
+.pergunta h2{
+    max-width: 620px;
+}
+
+.resposta h3{
+    max-width: 329px;
+}
+
 h4{
     font-size: 19px;
     font-weight: 700;
     color: #484848; 
     line-height: 25px;
-}
-
-.txt-bot1{
-    font-size: 21px;
-    font-weight: 400;
-    color: #FFF5f4; 
-    line-height: 52px;
-}
-
-.txt-bot2{
-    font-size: 21px;
-    font-weight: 400;
-    color: #818181; 
 }
 
 /* Tela 3 ---------------------------------------- */
@@ -291,7 +286,7 @@ header{
 }
 
 .final-quizz{
-    height: 430px;
+
     padding: 18px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
@@ -456,11 +451,7 @@ header{
     .conteudo-quizz{
         width: 100%;
     }
-
-    .final-quizz{
-        height: 500px;
-    }
-
+    
     h3{
         font-size: 13px;
     }
