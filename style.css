@@ -1,7 +1,11 @@
 *{
     box-sizing: border-box;
 }
+
 /* ----- Texts ---------------------------------------------------------------------- */
+*{
+    overflow-wrap: break-word;
+}
 body{
     font-family: 'Roboto', 'Sans-Serif';
 }
@@ -403,7 +407,7 @@ header{
     z-index: 1;
     top: 0px;
     left: 0px;
-    background-image: linear-gradient(#ffffff 0%, #000000 50%, #000000 80%);
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
     border-radius: 5px;
 }
 
