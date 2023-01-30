@@ -224,14 +224,17 @@ function condicaoFinalQuizz(){
 }
 
 function reiniciarQuizz(){
-  document.querySelector(".page-2").classList.add("escondido");
   clicks=0;
   indexPergunta=0;
   acertos=0;
+  document.querySelector(".page-2").classList.add("escondido");
   loadQuizzSelected(quizzSelected);
 }
 
 function toHome(){
+  clicks=0;
+  indexPergunta=0;
+  acertos=0;
   document.querySelector(".page-2").classList.add("escondido");
   document.querySelector(".page-3-4").classList.add("escondido");
   document.querySelector(".container-header").scrollIntoView();
