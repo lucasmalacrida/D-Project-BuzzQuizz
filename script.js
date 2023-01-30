@@ -156,14 +156,16 @@ function selecionarResposta(x){
   console.log(desabilitarRespostas);
   for(let i=0;i<desabilitarRespostas.length;i++){
     desabilitarRespostas[i].removeAttribute("onclick");
+    desabilitarRespostas[i].style.opacity = "0.3";
   }
 
   let nodeList=x.parentElement.querySelectorAll(".respostaErrada");
   
   for(let i=0;i<nodeList.length;i++){
-    nodeList[i].style.opacity = "0.3";
     nodeList[i].querySelector("h3").style.color="#ff4b4b";
   }
+
+  x.style.opacity="1";
 
   //indo para prox pergunta dps de 2s
   setTimeout(function(){
