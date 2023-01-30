@@ -25,7 +25,7 @@ function quizzesRecebidos() {
     `
 }})
 promise.catch((erro) => {
-    alert("Erro no servidor! Atualize a página")
+    alert("Erro no servidor! Atualize a página");
 })
 }
 function toPage3(){
@@ -38,7 +38,42 @@ function toPage2(){
   document.querySelector(".pagina-quizz").classList.remove("escondido");
   tela2();
 }
+
+const boxTemp = document.querySelector(".criarQuizzBox");
+let keys = Object.keys(localStorage);
+let numbers = keys.map(key => parseInt(key, 10));
+
+function meusQuizzes() {
+  if (localStorage.length > 0) {
+    document.querySelector(".seusQuizzes").classList.remove("escondido");
+    document.querySelector(".textBox").classList.add("escondido");
+    document.querySelector(".criarQuizzButton").classList.add("escondido");
+      
+    for (let i = 0; i < numbers.length; i++) {
+      promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${numbers[i]}`);
+      promise.then((res) => {
+      console.log(res);
+        boxTemp.innerHTML += `
+          <figure class="model-quiz" id="${numbers[i]}" onclick="quizzSelecionado(this)">
+            <img src="${res.data[i].image}"/>  
+            <figcaption>${res.data[i].title}</figcaption>
+          </figure>
+            `;
+      });
+    }
+  } else {
+    document.querySelector(".textBox").classList.remove("escondido");
+    document.querySelector(".criarQuizzButton").classList.remove("escondido");
+  }
+
+  promise.catch((erro) => {
+    alert("Erro no servidor! Atualize a página");
+  });
+}
+
+
 quizzesRecebidos();
+meusQuizzes();
 
 // ---------- FIM TELA 1 --------------------------------------------------------------------------------
 
@@ -469,7 +504,6 @@ function loadQuizzLevels(){
 }
 
 // ---------- TELA 3.4 --------------------------------------------------------------------------------
-
 function saveQuizz(){
   axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzInfo).then(saveQuizzSucess).catch(x => alert("Erro ao salvar Quizz."));
 

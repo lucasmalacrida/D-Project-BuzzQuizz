@@ -148,13 +148,12 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     width: 1051px;
-    height: 181px;
+    height: 100%;
     border: 1px dashed #D4D4D4;
     /* stroke-dasharray: 5 2; */
     border-radius: 5px;
-    margin: 77px 0px;
+    margin-bottom: 77px;
 }
 .textBox{
     width: 250px;
