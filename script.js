@@ -44,7 +44,7 @@ let keys = Object.keys(localStorage);
 let numbers = keys.map(key => parseInt(key, 10));
 
 function meusQuizzes() {
-  if(localStorage.length = 0){
+  if(localStorage.length == 0){
     return;
   }
   if (localStorage.length > 0) {
