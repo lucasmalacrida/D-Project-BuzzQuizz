@@ -479,6 +479,14 @@ header{
         font-size: 17px;
     }
 
+    .pergunta h2{
+        max-width: 308px;
+    }
+    
+    .resposta h3{
+        max-width: 163px;
+    }
+
 /* Tela 3 ---------------------------------------- */
     .forms {
         width: 100vw;
