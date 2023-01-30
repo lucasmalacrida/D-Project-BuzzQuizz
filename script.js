@@ -2,9 +2,12 @@
 
 function quizzesRecebidos() {
   const quizzRecebidos = document.querySelector(".todosQuizzesGrid");
-  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`)
-  .then((res) => {
+  axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes`).then((res) => {
     for(let i = 0; i< res.data.length; i++){
+      for(let j = 0; i< numbers.length; i++){
+      if(res.data[i].id === numbers[j]){
+        return;
+      }}
       quizzRecebidos.innerHTML += `
       <figure class="model-quiz" id="${res.data[i].id}" onclick="toQuizz(this)">
         <img src="${res.data[i].image}"/>  
