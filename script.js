@@ -44,6 +44,9 @@ let keys = Object.keys(localStorage);
 let numbers = keys.map(key => parseInt(key, 10));
 
 function meusQuizzes() {
+  if(localStorage.length = 0){
+    return;
+  }
   if (localStorage.length > 0) {
     document.querySelector(".seusQuizzes").classList.remove("escondido");
     document.querySelector(".criarQuizzBox").classList.add("escondido");
